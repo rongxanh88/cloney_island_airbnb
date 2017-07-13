@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :user_roles
   has_many :roles, through: :user_roles
   has_many :addresses
-  
+
   def full_name
     first_name + " " + last_name
   end
@@ -27,5 +27,4 @@ class User < ApplicationRecord
   def traveler?
     roles.exists?(name: "traveler")
   end
-
 end

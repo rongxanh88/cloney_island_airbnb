@@ -1,7 +1,7 @@
 namespace :import do
   desc "Imports all seed data"
   task :all => [:regenerate, :roles, :users, :addresses, :cancellations, :amenities, :listings, :trips]
-  
+
   desc "wipes database before seeding"
   task :regenerate do
     Rails.env = "development"

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user do
+  factory :user, aliases: [:host] do
     first_name "Paul"
     last_name "Simon"
     sequence(:phone_number) do |n|
@@ -9,7 +9,7 @@ FactoryGirl.define do
       "paul#{n}@email.com"
     end
     password "password"
-    birthday "2017-07-11 20:04:56"
+    birthday "2017-07-11"
     profile_picture { File.new("#{Rails.root}/lib/assets/baby_penguin.jpg") }
   end
 end

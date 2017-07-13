@@ -1,8 +1,10 @@
 FactoryGirl.define do
   factory :listing do
-    association :address, factory: :address
-    association :cancellation, factory: :cancellation
-    association :user, factory: :user
+    # association :address, factory: :address
+    # association :cancellation, factory: :cancellation
+    user
+    address
+    cancellation
 
     name 'Best Place on Earth'
     description 'Place new description here'

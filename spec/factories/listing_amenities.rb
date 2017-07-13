@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :listing_amenity do
-    amenity nil
-    listing nil
+    amenity
+    listing
   end
 end
