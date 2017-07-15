@@ -2,90 +2,83 @@ require 'rails_helper'
 
 RSpec.feature "Guest can search properties", type: :feature do
   scenario "guests can search by city" do
-    skip
     listing = create(:listing)
 
     visit root_path
 
     within(".search_bar") do
       expect(page).to have_field("city")
-      expect(page).to have_field("zipcode")
+      expect(page).to have_field("zip_code")
       expect(page).to have_field("check_in")
       expect(page).to have_field("check_out")
       expect(page).to have_selector(:link_or_button, 'Search')
     end
 
-    fill_in "city", with: "#{property.city}"
-    fill_in "state", with: "#{property.state}"
+    fill_in "city", with: "#{listing.address.city}"
+    fill_in "state", with: "#{listing.address.state}"
     click_on "Search"
 
-    expect(current_path).to eq(listings_path)
+    expect(current_path).to eq(search_path)
 
     within(".results") do
-      expect(page).to have_content(property.name)
-      expect(page).to have_css("img[src*='#{property.image_url}']")
-      expect(page).to have_selector('#markers img', count: 1)
+      expect(page).to have_content(listing.name)
     end
   end
 
-  scenario "can search by zipcode" do
-    skip
-    create(:user, role: 0)
-    property = create(:property)
+  scenario "guests can search by zip_code" do
+    listing = create(:listing)
 
     visit root_path
 
-    within(".search_bar") do
-      expect(page).to have_field("city")
-      expect(page).to have_field("zipcode")
-      expect(page).to have_field("check_in")
-      expect(page).to have_field("check_out")
-      expect(page).to have_selector(:link_or_button, 'Search')
-    end
-
-    fill_in "zipcode", with: "#{property.zipcode}"
+    fill_in "zip_code", with: "#{listing.address.zip_code}"
     click_on "Search"
 
-    expect(current_path).to eq(properties_path)
+    expect(current_path).to eq(search_path)
 
     within(".results") do
-      expect(page).to have_content(property.name)
-      expect(page).to have_css("img[src*='#{property.image_url}']")
-      expect(page).to have_selector('#markers img', count: 1)
+      expect(page).to have_content(listing.name)
     end
   end
 
   scenario "guest can search by dates" do
-    skip
-    create(:user, role: 0)
-    property_1 = create(:property)
-    property_2 = create(:property)
-    property_availability = create(:property_availability, property: property_1, date: Date.today, reserved?: false)
-    property_availability = create(:property_availability, property: property_1, date: Date.tomorrow, reserved?: true)
-    property_availability = create(:property_availability, property: property_2, date: Date.today, reserved?: false)
-    property_availability = create(:property_availability, property: property_2, date: Date.tomorrow, reserved?: false)
+    listing = create(:listing)
+    user = create(:user)
+    host = create(:user)
+    trip = Trip.create!(user_id: user.id,
+    host_id: host.id,
+    trip_status: 0,
+    num_guests: 3,
+    start_date: Date.today,
+    end_date: Date.tomorrow,
+    listing_id: listing.id)
 
     visit root_path
 
-    within(".search_bar") do
-      expect(page).to have_field("city")
-      expect(page).to have_field("zipcode")
-      expect(page).to have_field("check_in")
-      expect(page).to have_field("check_out")
-      expect(page).to have_selector(:link_or_button, 'Search')
-    end
-
-    fill_in "Check In", with: "#{Date.today}"
-    fill_in "Check Out", with: "#{Date.tomorrow}"
+    fill_in "check_in", with: "#{Date.today + 3}"
+    fill_in "check_out", with: "#{Date.today + 5}"
     click_on "Search"
 
-    expect(current_path).to eq(properties_path)
+    expect(current_path).to_not have_content(listing.name)
+  end
 
-    within(".results") do
-      expect(page).to have_content(property_2.name)
-      expect(page).to_not have_content(property_1.name)
-      expect(page).to have_css("img[src*='#{property_2.image_url}']")
-      expect(page).to have_selector('#markers img', count: 1)
-    end
+  scenario "guest can search by dates sad path" do
+    listing = create(:listing)
+    user = create(:user)
+    host = create(:user)
+    trip = Trip.create!(user_id: user.id,
+    host_id: host.id,
+    trip_status: 0,
+    num_guests: 3,
+    start_date: Date.today,
+    end_date: Date.tomorrow,
+    listing_id: listing.id)
+
+    visit root_path
+
+    fill_in "check_in", with: "#{Date.today}"
+    fill_in "check_out", with: "#{Date.tomorrow}"
+    click_on "Search"
+
+    expect(current_path).to_not have_content(listing.name)
   end
 end

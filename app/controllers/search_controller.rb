@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
   def index
-    @listings = Search.find_listings(params)
+    @available_listings = Search.return_search(params)
   end
 end
