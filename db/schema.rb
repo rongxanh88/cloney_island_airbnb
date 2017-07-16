@@ -106,6 +106,10 @@ ActiveRecord::Schema.define(version: 20170716172954) do
     t.string "profile_picture_content_type"
     t.integer "profile_picture_file_size"
     t.datetime "profile_picture_updated_at"
+    t.string "provider"
+    t.string "uid"
+    t.string "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
   add_foreign_key "listing_amenities", "amenities"

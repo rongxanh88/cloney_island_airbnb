@@ -7,11 +7,19 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    .user-widget
+      -if current_user
+        ='Welcome #{current_user}!'
+        =link_to "Log Out", logout_path
+      -else
     .navbar-main
       .navbar-header
         = link_to image_tag("air_bnb_logo.png", :class => 'nav-logo'), root_path
         = render "shared/search_partial"
         .navbar-user-types
+          .loginBtn
+            .loginBtn--facebook
+              =link_to "Sign in with Facebook", "/auth/facebook"
           =link_to "Become a Host", login_path #needs specific host sign up
           =link_to "Help", "#" #needs help stuff
           - if current_user

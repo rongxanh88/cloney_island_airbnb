@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class User < ApplicationRecord
   has_secure_password
   has_attached_file :profile_picture, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
@@ -25,5 +27,21 @@ class User < ApplicationRecord
 
   def traveler?
     roles.exists?(name: "traveler")
+  end
+
+  def self.from_omniauth(auth)
+      where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.first_name = auth.info.name
+      user.last_name = auth.info.name
+      user.phone_number = auth.phone_number
+      user.birthday = auth.birthday
+      user.password = SecureRandom.urlsafe_base64
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      binding.pry
+      user.save!
+    end
   end
 end

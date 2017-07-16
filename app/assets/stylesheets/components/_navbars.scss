@@ -8,11 +8,9 @@
   padding: 5px;
 
   .navbar-user-types {
+    white-space: nowrap;
       color: black;
       margin: 0 300px;
-      padding-left: 10px;
-      border-radius: 3px;
-      // text-align: right;
     }
     a:hover {
       border-bottom: 2px solid black;
