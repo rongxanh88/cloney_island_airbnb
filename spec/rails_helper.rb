@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/dsl'
 require "paperclip/matchers"
+require 'securerandom'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
