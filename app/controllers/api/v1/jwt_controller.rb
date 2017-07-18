@@ -1,10 +1,14 @@
 class Api::V1::JwtController < ActionController::API
 
   def create
-    #get HTTP request, need token in header
-    binding.pry
     if request.headers[:authorization]
-      #do this
+      user = User.find_by(api_token: request.headers[:authorization])
+      payload = {user_id: user.id}
+      jwt = JWT.encode payload, ENV['hmac_secret'], 'HS256'
+      render json: {
+        status: 200,
+        access_token: jwt
+      }.to_json
     else
       render json: {
         status: 400,
