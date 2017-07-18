@@ -1,7 +1,7 @@
-%h1 Create a New Listing
+%h1 Edit Listing
 %br
 .new_listing_container
-  = form_for @listing, as: :host, url: user_host_listings_path(@listing.user), method: :post, html: { multipart: true } do |f|
+  = form_for @listing, as: :host, url: user_host_listing_path(@listing.user, @listing), method: :put do |f|
     %p
       = f.label :name
       = f.text_field :name
@@ -85,4 +85,4 @@
           %br
     %br
     %p
-      = f.submit "Create"
+      = f.submit "Update"

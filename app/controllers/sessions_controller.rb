@@ -6,17 +6,17 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by(email: params[:session][:email])
     if request.env['omniauth.auth']
       user = User.from_omniauth(request.env['omniauth.auth'])
       session[:user_id] = user.id
-      redirect_to user_dashboard_index_path(user)
+      redirect_to user_dashboard_index_path(user.id)
     elsif @user && @user.authenticate(params[:session][:password])
       @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       flash[:success] = "Logged in as #{@user.first_name}"
       if @user.host?
-        redirect_to host_dashboard_index_path(@user)
+        redirect_to host_dashboard_index_path
       else
         redirect_to user_dashboard_index_path(@user)
       end

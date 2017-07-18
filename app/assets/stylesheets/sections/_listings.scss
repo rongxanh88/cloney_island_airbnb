@@ -6,7 +6,6 @@ h1 {
 .new_listing_container {
     max-width: 500px;
     padding: 10px 20px;
-    background: #f4f7f8;
     margin: 10px auto;
     padding: 20px;
     background: #f4f7f8;
@@ -81,19 +80,19 @@ h1 {
     padding: 19px 39px 18px 39px;
     color: #FFF;
     margin: 0 auto;
-    background: #1abc9c;
+    background: #ff5a5f;
     font-size: 18px;
     text-align: center;
     font-style: normal;
     width: 100%;
-    border: 1px solid #16a085;
+    border: 1px solid #ff5a5f;
     border-width: 1px 1px 3px;
     margin-bottom: 10px;
 }
 .new_listing_container input[type="submit"]:hover,
 .new_listing_container input[type="button"]:hover
 {
-    background: #109177;
+    background: #ff5a5f;
 }
 
 .card_price.vertical_card_price {

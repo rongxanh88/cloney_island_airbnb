@@ -1,0 +1,86 @@
+.room_dls
+  .container-001
+    .panel.room-section.no-border
+      .row
+        .column
+          .summary-title
+            = "#{@listing.name}"
+          .address
+            = "#{@listing.address}"
+          %hr
+          .section-title
+            = "Amenities"
+          .row
+            %p
+              - @listing.amenities.each do |amenity|
+                %span
+                  = "  #{amenity.name}  "
+          %hr
+          .row
+            .column
+              %p
+                = @listing.description
+          %hr
+          .section-title
+            = "The Space"
+          .row
+            .col-half
+              %p
+                = "Accommodates: #{@listing.accomodates}"
+              %p
+                = "Bathrooms: #{@listing.bathrooms}"
+              %p
+                = "Bedrooms: #{@listing.bedrooms}"
+              %p 
+                = "Number of Beds: #{@listing.beds}"
+            .col-half
+              %p
+                = "Bed Type: #{@listing.bed_type}"
+              %p
+                = "Pets: #{@listing.pet_type}"
+              %p
+                = "Room Type: #{@listing.room_type}"
+              %p
+                = "Property Type: #{@listing.property_type}"
+          %hr
+          .section-title
+            = "Price"
+          .row
+            .column
+              %p
+                = "Price: $#{@listing.price}"
+          %hr
+          .section-title
+            = "House Rules"
+          .row
+            .column
+              %p 
+                = @listing.house_rules
+          %hr
+          .section-title
+            = "Cancellation Policy"
+          .row
+            - policy = CancellationPolicy.new(@listing.cancellation_policy)
+            .column-half
+              %p 
+                = policy.name
+            .column-half
+              %p 
+                = policy.refund
+          .row
+            .column
+              %p 
+                = policy.description
+          %hr
+          .section-titile
+            = "Listing Pictures"
+          - @listing.listing_images.each do |image|
+            %p 
+              = image_tag image.property_image
+          %br 
+          %hr
+          .row
+            .column
+              = button_to 'Book Now', new_listing_trip_path(@listing), method: :get
+-# .button.book_now_button
+-#   = button_to 'Book Now', new_listing_trip_path(@listing), method: :get

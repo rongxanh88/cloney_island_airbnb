@@ -20,11 +20,11 @@
           .loginBtn
             .loginBtn--facebook
               =link_to "Sign in with Facebook", "/auth/facebook"
-          =link_to "Become a Host", login_path #needs specific host sign up
-          =link_to "Help", "#" #needs help stuff
+          -if current_user && current_user.host? == false
+            =link_to "Become a Host", new_user_host_listing_path(current_user)
           - if current_user
             =link_to "Messages", "#" #needs Messages path
-            =link_to "Trips", "#" #needs trips path
+            =link_to "Trips", trips_path
             =link_to "Sign Out", logout_path
             -if current_user.admin?
               =link_to "Admin Dashboard", "#" #admin_dashboard_path
