@@ -23,7 +23,7 @@ gem 'faker'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'omniauth'
 gem 'omniauth-facebook'
-# gem 'twilio-ruby'
+gem 'twilio-ruby'
 
 group :development, :test do
   gem 'pry'
@@ -34,8 +34,8 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails', '~> 3.5'
   gem 'launchy'
-  # gem 'vcr'
-  # gem 'webmock'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
