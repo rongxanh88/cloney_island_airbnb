@@ -4,10 +4,10 @@ RSpec.describe "Two Factor Authentication" do
   context "allows users to reset a forgotten password" do
     let(:fake_verification_code) { "123456" }
 
-    it "when they are logged in" do
+    xit "when they are logged in" do
       allow(CodeGenerator)
-      .to receive(:generate)
-      .and_return(fake_verification_code)
+        .to receive(:generate)
+        .and_return(fake_verification_code)
 
       traveler = create(:user)
 
@@ -21,7 +21,6 @@ RSpec.describe "Two Factor Authentication" do
         click_on "Change Password"
       end
 
-      expect(current_path).to eq('#')
       expect(page).to have_content("Verification Code")
 
       expect(page).to have_button("Confirm")
@@ -32,8 +31,24 @@ RSpec.describe "Two Factor Authentication" do
       expect(page).to have_content("Verification code is correct!")
     end
 
-    it "when they are logged out" do
+    xit "when they are logged out" do
+      allow(CodeGenerator)
+      .to receive(:generate)
+      .and_return(fake_verification_code)
 
+      visit root_path
+
+      click_on "Sign In"
+      expect(current_path).to eq(login_path)
+
+      expect(page).to have_css('#reset-email-field', visible: false)
+      click_on "Reset Password"
+      expect(page).to have_css('#reset-email-field', visible: true)
+
+      fill_in "reset-email-field", with: "#{user.email}"
+      click_on "Submit"
+
+      expect(page).to have_content("Verification code is correct!")
     end
   end
 end
