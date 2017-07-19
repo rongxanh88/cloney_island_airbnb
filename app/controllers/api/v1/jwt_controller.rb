@@ -1,8 +1,7 @@
 class Api::V1::JwtController < ActionController::API
-
   def create
     if request.headers[:authorization]
-      user = User.find_by(api_token: request.headers[:authorization])
+      user = User.find_by(api_token: request.headers[:Authorization])
       payload = {user_id: user.id}
       jwt = JWT.encode payload, ENV['hmac_secret'], 'HS256'
       render json: {
@@ -16,5 +15,4 @@ class Api::V1::JwtController < ActionController::API
       }.to_json
     end
   end
-
 end

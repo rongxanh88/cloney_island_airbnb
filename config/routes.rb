@@ -27,10 +27,9 @@ Rails.application.routes.draw do
 
   resources :trips, only: [:index]
 
-  #below is api endpoint for getting JSON WEB TOKEN
   namespace :api do
     namespace :v1 do
-      get '/access', to: 'jwt#create'
+      get '/access_token', to: 'jwt#create'
     end
   end
 end

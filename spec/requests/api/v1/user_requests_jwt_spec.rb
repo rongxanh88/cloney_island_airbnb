@@ -4,9 +4,9 @@ RSpec.describe "JWT Access Token", :type => :request do
   it "creates a JWT when an HTTP request comes in" do
     token = SecureRandom.uuid.gsub(/\-/,'')
     user = create(:user, api_token: token)
-    authorization = {authorization: token}
+    authorization = {Authorization: token}
 
-    get '/api/v1/access.json', params: nil, headers: authorization
+    get '/api/v1/access_token.json', params: nil, headers: authorization
     result = JSON.parse(response.body, symbolize_names: true)
     decoded_token = JWT.decode(
       result[:access_token], ENV['hmac_secret'], true, { algorithm: 'HS256' }
