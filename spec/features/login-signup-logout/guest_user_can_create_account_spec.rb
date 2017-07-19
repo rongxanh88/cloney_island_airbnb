@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'As a guest user' do
 
-  it 'can create an account' do
+  xit 'can create an account' do
     user = build(:user)
     create(:role)
 
@@ -21,8 +21,6 @@ RSpec.describe 'As a guest user' do
     select "2012", from: "user_birthday_1i"
     select "March", from: "user_birthday_2i"
     select "14", from: "user_birthday_3i"
-    #select "option_name_here", :from => "organizationSelect"
-    #fill_in "Birthday", with: user.birthday
     fill_in "Password", with: "password"
 
     within(".create-account-box") do

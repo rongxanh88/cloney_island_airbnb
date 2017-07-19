@@ -24,7 +24,9 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'jwt'
-# gem 'twilio-ruby'
+gem 'twilio-ruby', '~> 4.4.0'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+
 
 group :development, :test do
   gem 'pry'

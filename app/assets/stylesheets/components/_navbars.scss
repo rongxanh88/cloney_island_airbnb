@@ -1,44 +1,77 @@
 @import 'base';
+.navbar-main {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 100;
 
-.navbar-header {
-  align-items: center;
-  background-color: white;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);
-  display: flex;
-  padding: 5px;
+  .navbar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);
+    padding: 5px;
 
-  .navbar-user-types {
-    white-space: nowrap;
-      color: black;
-      margin: 0 300px;
+    .nav-left {
+      display: flex;
+      align-content: center;
+      justify-content: space-between;
+      align-items: center;
+
+      .nav-item-left {
+
+        form {
+          display: inline-flex;
+
+          input {
+            margin: 0 5px;
+          }
+        }
+      }
     }
-    a:hover {
-      border-bottom: 2px solid black;
+
+    .navbar-user-types {
+      width: 40%;
+      display: flex;
+      justify-content: flex-end;
+      font-size: 14px;
+
+      a:hover {
+        border-bottom: 2px solid black;
+      }
+
+      span {
+        padding: 10px;
+      }
+
+      .navbar-user-bottom {
+        align-items: center;
+        background-color: white;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 5px;
+
+        .navbar-bottom-links {
+
+          a {
+            margin: 0 20px;
+            text-transform: capitalize;
+          }
+
+          a:hover {
+            color: $dark-hover;
+            font-weight: 500;
+          }
+        }
+      }
+    }
   }
-}
 
-.navbar-user-bottom {
-  align-items: center;
-  background-color: white;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 5px;
-
-  .navbar-bottom-links {
-    a {
-      margin: 0 20px;
-      text-transform: capitalize;
-    }
-    a:hover {
-      color: $dark-hover;
-      font-weight: 500;
-    }
+  .nav-logo {
+    height: 40px;
+    margin: 20px;
   }
-}
-
-.nav-logo {
-  height: 40px;
-  margin: 20px;
 }

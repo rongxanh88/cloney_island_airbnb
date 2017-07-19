@@ -12,7 +12,7 @@ RSpec.feature "Guest can search properties", type: :feature do
 
     visit root_path
 
-    within(".navbar-search") do
+    within(".search") do
       expect(page).to have_field("search_address")
       expect(page).to have_selector(:link_or_button, 'Search')
     end
@@ -35,7 +35,7 @@ RSpec.feature "Guest can search properties", type: :feature do
 
     visit root_path
 
-    within(".navbar-search") do
+    within(".search") do
       expect(page).to have_field("search_address")
       expect(page).to have_selector(:link_or_button, 'Search')
     end
@@ -48,7 +48,6 @@ RSpec.feature "Guest can search properties", type: :feature do
   end
 
   scenario "guest can search by dates" do
-    skip
     listing = create(:listing, status: 1)
     create(:listing_image, listing_id: listing.id)
 
@@ -64,15 +63,14 @@ RSpec.feature "Guest can search properties", type: :feature do
 
     visit root_path
 
-    fill_in "check_in", with: "#{Date.today + 3}"
-    fill_in "check_out", with: "#{Date.today + 5}"
+    fill_in "search_start_date", with: "#{Date.today + 3}"
+    fill_in "search_end_date", with: "#{Date.today + 5}"
     click_on "Search"
 
     expect(current_path).to_not have_content(listing.name)
   end
 
   scenario "guest can search by dates sad path" do
-    skip
     listing = create(:listing, status: 1)
     create(:listing_image, listing_id: listing.id)
 
@@ -88,8 +86,8 @@ RSpec.feature "Guest can search properties", type: :feature do
 
     visit root_path
 
-    fill_in "check_in", with: "#{Date.today}"
-    fill_in "check_out", with: "#{Date.tomorrow}"
+    fill_in "search_start_date", with: "#{Date.today}"
+    fill_in "search_end_date", with: "#{Date.tomorrow}"
     click_on "Search"
 
     expect(current_path).to_not have_content(listing.name)
@@ -109,20 +107,17 @@ RSpec.feature "Guest can search properties", type: :feature do
   end
 
   scenario "guests can search by number of accomodations sad path" do
-    skip
     listing = create(:listing, accomodates: 4, status: 1)
     create(:listing_image, listing_id: listing.id)
 
     visit root_path
 
-    fill_in "zip_code", with: "#{listing.address.zip_code}"
-    fill_in "num_guests", with: 5
+    fill_in "search_address", with: "#{listing.address}"
+    fill_in "search_num_guests", with: 5
     click_on "Search"
 
-    expect(current_path).to eq(search_path)
+    expect(current_path).to eq(listings_path)
 
-    within(".results") do
       expect(page).to_not have_content(listing.name)
-    end
   end
 end

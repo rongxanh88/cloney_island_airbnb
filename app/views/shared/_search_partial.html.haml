@@ -1,5 +1,6 @@
-.navbar-search
-  = form_tag(listings_path, method: "get", id: "search") do
-    = text_field_tag(:search_address, params[:search_address], placeholder: "Search any part of an address...", value: nil, size: "50x10")
-    = number_field_tag(:search_num_guests, params[:search_num_guests], placeholder: "Number of Guests...", value: nil, size: "20x10")
-    = submit_tag("Search", name: nil)
+= form_tag(listings_path, method: "get", id: "search") do
+  = text_field_tag(:search_address, params[:search_address], placeholder: "Search any part of an address...", value: nil, size: "40x10")
+  = number_field_tag(:search_num_guests, params[:search_num_guests], placeholder: "Number of Guests...", value: nil, size: "5x10")
+  = text_field_tag(:search_start_date, params[:search_start_date], placeholder: "Start Date...", value: nil, size: "15x10")
+  = text_field_tag(:search_end_date, params[:search_end_date], placeholder: "End Date...", value: nil, size: "15x10")
+  = submit_tag("Search", name: nil)

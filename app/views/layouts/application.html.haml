@@ -14,34 +14,43 @@
       -else
     .navbar-main
       .navbar-header
-        = link_to image_tag("air_bnb_logo.png", :class => 'nav-logo'), root_path
-        = render "shared/search_partial"
-        .navbar-user-types
-          .loginBtn
-            .loginBtn--facebook
-              =link_to "Sign in with Facebook", "/auth/facebook"
+        .nav-left.logo.nav-item
+          = link_to image_tag("air_bnb_logo.png", :class => 'nav-logo nav-left-item'), root_path
+          .search.nav-item-left
+            = render "shared/search_partial"
+        .navbar-user-types.nav-item
+          %span=link_to "Sign in with Facebook", "/auth/facebook"
           -if current_user && current_user.host? == false
-            =link_to "Become a Host", new_user_host_listing_path(current_user)
+            %span=link_to "Become a Host", new_user_host_listing_path(current_user)
           - if current_user
-            =link_to "Messages", "#" #needs Messages path
-            =link_to "Trips", trips_path
-            =link_to "Sign Out", logout_path
+            %span=link_to "Messages", "#" #needs Messages path
+            %span=link_to "Trips", trips_path
+            %span=link_to "Sign Out", logout_path
             -if current_user.admin?
-              =link_to "Admin Dashboard", "#" #admin_dashboard_path
+              %span=link_to "Admin Dashboard", "#" #admin_dashboard_path
             -if current_user.traveler?
-              .navbar-user-bottom
-                =link_to "Dashboard", user_dashboard_index_path(current_user)
-                -# =link_to "Inbox", user_messages_center_page_path
-                -# =link_to "Your Listing", user_listings_path
-                -# =link_to 'Your Trips', user_trips_path
-                -# =link_to 'Profile', user_profile_path
-                -# =link_to 'Account', user_account_path
+              %span=link_to "Dashboard", user_dashboard_index_path(current_user)
+              -# =link_to "Inbox", user_messages_center_page_path
+              -# =link_to "Your Listing", user_listings_path
+              -# =link_to 'Your Trips', user_trips_path
+              -# =link_to 'Profile', user_profile_path
+              -# =link_to 'Account', user_account_path
           - else
-            =link_to "Sign Up", new_user_path
-            =link_to "Sign In", login_path
+            %span=link_to "Sign Up", new_user_path
+            %span=link_to "Sign In", login_path
 
     -flash.each do |name, message|
       .notice
         =message
+    .container-main
+      = yield
 
-    = yield
+    -# .container.footer
+    -#   .item
+    -#     %span Airbnb
+    -#
+    -#   .item
+    -#     %span Discover
+    -#
+    -#   .item
+    -#     %span Hosting

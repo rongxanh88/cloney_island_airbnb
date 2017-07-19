@@ -67,30 +67,31 @@ namespace :import do
   task listings: :environment do
     hosts = User.joins(:user_roles, :roles).where(roles: {name: "host"}).uniq
     amenities = Amenity.all
-
-    hosts.each do |host|
-      listing = Listing.create!(
-        description: ["Suite of three beautifully furnished rooms set amongst the trees. Just minutes from downtown, this secluded property is an urban retreat like no other. The treehouse provides and intimate, simple and calming retreat for 2 people. The treehouse is the subject of innumerable articles, blogs and was recently featured on Treehouse Masters Ultimate Treehouses.", "Spend a unforgettable holiday in the enchanting surroundings of the town of Cisternino (reachable from the near airports of Bari and Brindisi).Trullo Edera offers a heaven of peace and tranquillity, set in an elevated position with a stunning view. It’s the perfect place if you like nature. You can stay under an olive tree reading a good book, you can have a walk in the small country streets or go to the nearest beaches.", "You can even easily visit any of the sights in Apulia such as the caves of Castellana, the trulli of Alberobello, the baroque cities of Lecce and Martina Franca, the excavations of Egnazia, the zoosafari of Fasano, Castel del Monte with Frederick’s castle, Grottaglie famous for its ceramics, Taranto, Brindisi and Lecce museums.", "Set on the sacred Ayung river valley, this all bamboo house is unique. First established in 2010, it is part of a master-planned community of luxurious bamboo villas with distinctive blonde roofs. Entering the house is a feast to the eyes and a showcase at how black and white bamboo can be combined in all shapes and pattern to create a stunning collection of luxurious floors, walls, ceiling, stairs and railings. Even the roof is an innovative arrangement of bamboo shingles."].sample,
-        address: '123 Billygoat Rd. Evergreen CO 80311',
-        user_id: host.id,
-        property_type: [0, 1, 2, 3, 4].sample,
-        room_type: [0, 1, 2].sample,
-        bed_type: [0, 1, 2, 3, 4, 5].sample,
-        accomodates: [1, 2, 3, 4, 5, 6].sample,
-        bathrooms: [1, 2, 3, 4, 5, 6].sample,
-        name: "Home of #{Faker::Ancient.god} #{host.id}",
-        bedrooms: [1, 2, 3, 4, 5, 6].sample,
-        beds: [1, 2, 3, 4, 5, 6].sample,
-        pet_type: [0, 1, 2, 3, 4].sample,
-        price: [100, 200, 300, 400, 500, 600].sample,
-        house_rules: ["No Smoking", "No Teenagers", "Hippies Use Back Door"].sample,
-        cancellation_policy: [0, 1, 2].sample,
-        status: ["unlisted", "listed"].sample
-        )
-      5.times do
-        listing.amenities << amenities.sample
+    5.times do
+      hosts.each do |host|
+        listing = Listing.create!(
+          description: ["Suite of three beautifully furnished rooms set amongst the trees. Just minutes from downtown, this secluded property is an urban retreat like no other. The treehouse provides and intimate, simple and calming retreat for 2 people. The treehouse is the subject of innumerable articles, blogs and was recently featured on Treehouse Masters Ultimate Treehouses.", "Spend a unforgettable holiday in the enchanting surroundings of the town of Cisternino (reachable from the near airports of Bari and Brindisi).Trullo Edera offers a heaven of peace and tranquillity, set in an elevated position with a stunning view. It’s the perfect place if you like nature. You can stay under an olive tree reading a good book, you can have a walk in the small country streets or go to the nearest beaches.", "You can even easily visit any of the sights in Apulia such as the caves of Castellana, the trulli of Alberobello, the baroque cities of Lecce and Martina Franca, the excavations of Egnazia, the zoosafari of Fasano, Castel del Monte with Frederick’s castle, Grottaglie famous for its ceramics, Taranto, Brindisi and Lecce museums.", "Set on the sacred Ayung river valley, this all bamboo house is unique. First established in 2010, it is part of a master-planned community of luxurious bamboo villas with distinctive blonde roofs. Entering the house is a feast to the eyes and a showcase at how black and white bamboo can be combined in all shapes and pattern to create a stunning collection of luxurious floors, walls, ceiling, stairs and railings. Even the roof is an innovative arrangement of bamboo shingles."].sample,
+          address: '123 Billygoat Rd. Evergreen CO 80311',
+          user_id: host.id,
+          property_type: [0, 1, 2, 3, 4].sample,
+          room_type: [0, 1, 2].sample,
+          bed_type: [0, 1, 2, 3, 4, 5].sample,
+          accomodates: [1, 2, 3, 4, 5, 6].sample,
+          bathrooms: [1, 2, 3, 4, 5, 6].sample,
+          name: "Home of #{Faker::Name.last_name} #{host.id}",
+          bedrooms: [1, 2, 3, 4, 5, 6].sample,
+          beds: [1, 2, 3, 4, 5, 6].sample,
+          pet_type: [0, 1, 2, 3, 4].sample,
+          price: [100, 200, 300, 400, 500, 600].sample,
+          house_rules: ["No Smoking", "No Teenagers", "Hippies Use Back Door"].sample,
+          cancellation_policy: [0, 1, 2].sample,
+          status: ["unlisted", "listed"].sample
+          )
+        5.times do
+          listing.amenities << amenities.sample
+        end
+        puts "Listing #{listing.id} created!"
       end
-      puts "Listing #{listing.id} created!"
     end
     puts "Listings loaded"
   end

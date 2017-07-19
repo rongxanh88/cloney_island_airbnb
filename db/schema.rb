@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718160102) do
+ActiveRecord::Schema.define(version: 20170718215209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170718160102) do
     t.integer "bathrooms"
     t.integer "bedrooms"
     t.integer "beds"
-    t.float "price"
+    t.integer "price"
     t.text "house_rules"
     t.integer "property_type"
     t.integer "bed_type"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20170718160102) do
     t.string "uid"
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string "verification_code"
     t.text "api_token"
   end
 

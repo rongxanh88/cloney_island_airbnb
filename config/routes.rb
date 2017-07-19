@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
 
+  resources :confirmations, only: [:new, :create]
+  # get '/confirmations', to: 'confirmations#new'
+  # post '/confirmations', to: 'confirmations#create'
+
   get '/search', to: 'search#index'
 
   resources :listings, only: [:index, :show] do
@@ -20,7 +24,7 @@ Rails.application.routes.draw do
       resources :listings, only: [:index, :show, :new, :create, :edit, :update]
     end
   end
-  
+
   namespace :host do
     resources :dashboard, only: [:index]
   end

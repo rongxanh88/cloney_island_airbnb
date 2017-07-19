@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include ConfirmationSender
 
   def new
     @user = User.new
@@ -9,7 +10,9 @@ class UsersController < ApplicationController
     if @user.save
       @user.roles << Role.find_by(name: "traveler")
       session[:user_id] = @user.id
-      redirect_to user_dashboard_index_path(@user)
+      ConfirmationSender.send_confirmation_to(@user)
+      redirect_to new_confirmation_path
+      #redirect_to user_dashboard_index_path(@user)
     else
       render :new
     end
@@ -35,7 +38,7 @@ class UsersController < ApplicationController
     params.require(:user)
           .permit(
             :email, :first_name, :last_name, :password, :phone_number,
-            :birthday, :profile_picture_file_name
+            :birthday, :profile_picture_file_name, :verification_code
             )
   end
 
