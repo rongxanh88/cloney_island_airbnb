@@ -15,4 +15,12 @@ RSpec.describe "JWT Access Token", :type => :request do
     expect(response).to have_http_status(200)
     expect(decoded_token.first["user_id"]).to eq(user.id)
   end
+
+  it "responds with a status of 401 if no header or improper token" do
+    get '/api/v1/access_token.json'
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(result[:status]).to eq(401)
+    expect(result[:message]).to eq("Unauthorized User")
+  end
 end

@@ -25,14 +25,7 @@ class JWTService
     def set_api_token
       if request.headers[:Authorization]
         @api_token = request.headers[:Authorization]
-      else
-        header_not_set
       end
-    end
-
-    def header_not_set
-      @status = 400
-      @message = "Authorization header not set."
     end
 
     def unauthorized_user
