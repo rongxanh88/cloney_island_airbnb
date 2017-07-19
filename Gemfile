@@ -31,14 +31,11 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 group :development, :test do
   gem 'pry'
   gem 'pry-state'
-  gem 'launchy'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'rspec-rails', '~> 3.5'
   gem 'launchy'
-  # gem 'vcr'
-  # gem 'webmock'
 end
 
 group :development do

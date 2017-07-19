@@ -1,18 +1,10 @@
 class Api::V1::JwtController < ActionController::API
   def create
-    if request.headers[:authorization]
-      user = User.find_by(api_token: request.headers[:Authorization])
-      payload = {user_id: user.id}
-      jwt = JWT.encode payload, ENV['hmac_secret'], 'HS256'
-      render json: {
-        status: 200,
-        access_token: jwt
-      }.to_json
+    service = JWTService.create(request)
+    if service.jwt
+      render json: {status: 200, access_token: service.jwt}
     else
-      render json: {
-        status: 400,
-        message: "Authorization header not set."
-      }.to_json
+      render json: {status: service.status, message: service.message}
     end
   end
 end
