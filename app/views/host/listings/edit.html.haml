@@ -40,7 +40,7 @@
       = f.select :room_type, [["Entire Home", :entire_home], ["Private Room", :private_room], ["Shared Room", :shared_room]]
     %p
       = f.label :pet_type
-      = f.select :pet_type, [["No Pets", :no_pets], ["Cat(s)", :cat], ["Dog(s)", :dog], ["Cat(s) and Dog(s)", :cat_and_dod], ["MISC", :misc]]
+      = f.select :pet_type, [["No Pets", :no_pets], ["Cat(s)", :cat], ["Dog(s)", :dog], ["Cat(s) and Dog(s)", :cat_and_dog], ["MISC", :misc]]
       %p
         = f.label :cancellation_policy
         = f.select :cancellation_policy, [["Flexible", :flexible], ["Moderate", :moderate], ["Strict", :strict]]

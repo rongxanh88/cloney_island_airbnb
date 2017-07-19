@@ -7,7 +7,7 @@ class Listing < ApplicationRecord
   belongs_to :user
 
   has_many :listing_images, dependent: :destroy
-  has_many :listing_amenities
+  has_many :listing_amenities, dependent: :destroy
   has_many :amenities, through: :listing_amenities
   has_many :trips
 

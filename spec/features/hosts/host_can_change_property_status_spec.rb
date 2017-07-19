@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Host can change property status", type: :feature do
-  xscenario "change status from unlisted to listed" do
+  scenario "change status from unlisted to listed" do
+    skip
     role = create(:role, name: 'host')
     host = create(:user)
     host.roles << role
@@ -12,6 +13,7 @@ RSpec.feature "Host can change property status", type: :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(host)
 
     visit host_dashboard_index_path(host)
+    save_and_open_page
     click_on "View All Properties"
 
     expect(current_path).to eq(host_properties_path)
@@ -25,7 +27,7 @@ RSpec.feature "Host can change property status", type: :feature do
   end
 
   xit "traveler cannot change listing status" do
-    user = create(:user)
+    traveler = create(:user)
     role = create(:role, name: 'traveler')
 
 

@@ -1,6 +1,11 @@
 class ConfirmationsController < ApplicationController
   def new
-    @user = User.find(session[:user_id])
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    else
+      @user = current_user
+      session[:user_id] = @user.id
+    end
   end
 
   def create
@@ -14,7 +19,6 @@ class ConfirmationsController < ApplicationController
       redirect_to user_dashboard_index_path(@user)
 
     else
-
       flash.now[:error] = "Verification code is incorrect."
 
       render :new
