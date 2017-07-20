@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     params.require(:user)
           .permit(
             :email, :first_name, :last_name, :password, :phone_number,
-            :birthday, :profile_picture_file_name, :verification_code
+            :birthday, :profile_picture, :verification_code
             )
   end
 

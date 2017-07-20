@@ -29,8 +29,9 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'redis'
 gem 'redis-namespace'
 gem 'sidekiq'
-gem 'whenever'
-
+gem 'geocoder'
+gem "jquery-slick-rails"
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'pry'
@@ -40,6 +41,9 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails', '~> 3.5'
   gem 'launchy'
+  gem 'geocoder'
+  # gem 'vcr'
+  # gem 'webmock'
 end
 
 group :development do
@@ -49,6 +53,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'pry'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

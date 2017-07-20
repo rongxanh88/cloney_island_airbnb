@@ -1,10 +1,13 @@
+.container.host-nav
+  =render partial: "shared/host_nav"
+  
 %table{:class => "table reservation-history"}
   %thead
     %tr
       %td
+      %td
         %h3
           %strong All Reservations
-      %td
       %td
       %td
   %tbody
@@ -32,5 +35,5 @@
           = image_tag trip.user.profile_picture, :class => "trip-guest-pic"
           %p.trip-guest= trip.user.first_name
         %td
-          %p= number_to_currency(trip.listing.price * (trip.end_date - trip.start_date))
-          %p= link_to 'Message History', '/' #placeholder until messages are implemented
+          %p= number_to_currency(trip.listing.price * (trip.end_date - trip.start_date).to_i)
+          %p= link_to 'Message History', conversations_path

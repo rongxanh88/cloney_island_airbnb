@@ -1,0 +1,7 @@
+<div id="messages" class="messages">
+  <div id="messages-table" class="messages-table">
+    <% if @conversation.messages.any? %>
+      <%= render @conversation.messages %>
+    <% end %>
+  </div>
+</div>

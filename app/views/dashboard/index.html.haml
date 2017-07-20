@@ -1,17 +1,26 @@
-%h1 User Dashboard
+%h1 User Profile
 .container-profile
-  .col-1
-    .profile-pic
-      =image_tag @user.profile_picture
-      %h3=link_to "Edit Profile", edit_user_path(@user)
-  .col-2
-    %h3
-      = "First Name: #{@user.first_name}"
-    %h3
-      = "Last Name: #{@user.last_name}"
-    %h3
-      = "Phone Number: #{@user.phone_number}"
-    %h3
-      = "Birthday: #{@user.birthday}"
-    %h3
-      = "Email: #{@user.email}"
+  .row
+    .col-1
+      .profile-pic
+        - if @user.profile_picture
+          =image_tag @user.profile_picture
+        %h3=link_to "Edit Profile", edit_user_path(@user)
+    .col-2
+      %h3
+        = "First Name: #{@user.first_name}"
+      %h3
+        = "Last Name: #{@user.last_name}"
+      %h3
+        = "Phone Number: #{@user.phone_number}"
+      %h3
+        = "Birthday: #{@user.birthday}"
+      %h3
+        = "Email: #{@user.email}"
+  .row
+    .column
+      - if current_user.roles.exists?(name: "host")
+        %p
+          = link_to "View Your Listings", user_host_listings_path(current_user)
+        %p
+          = link_to "Create A New Listing", new_user_host_listing_path(current_user)

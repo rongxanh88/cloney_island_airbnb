@@ -1,0 +1,52 @@
+%h1 Experience Show page
+
+.experience-box
+  .experience-title-box
+    %span=@experience.title
+    %span=@experience.city
+    %span=@experience.tagline
+  .experience-category-box
+    -@experience.experience_categories.each do |cat|
+      %span.cat-name=cat.name
+
+    %span"Hosted by: #{@experience.user.full_name}"
+    %span"Duration: #{@experience.duration}"
+    %span"Provisions: #{@experience.provisions}"
+    .host-profile-pic
+      =image_tag(@experience.user.profile_picture_file_name)
+  .experience-what-box
+    %span"What We'll Do: #{@experience.what}"
+  .experience-host-provides-box
+    %span"What I'll Provide: #{@experience.provisions}"
+  .experience-notes-box
+    %span"Notes: #{@experience.notes}"
+  .experience-where-box
+    %span"Where We'll Be: #{@experience.where}"
+    .experience-map
+
+  .host-block
+    %span"About your host, #{@experience.user.first_name}"
+    %p=@experience.host_description
+  .host-contact
+    -# =link_to messaging system
+  .available-dates
+    -# =link_to see available-dates popup
+  .experience-reviews
+    -# import some reviews
+  .experience-extras
+    %span"Extra Info"
+    %span"Group Size: #{@experience.group_size}"
+    %span"Guest Requirements: #{@experience.guest_requirements}"
+    %span"Cancellation Policy Type: #{@experience.cancellation_policy_type}"
+
+.experience-featured-image
+  -@experience.experience_images.each do |image|
+    =image_tag(image.image_file_name)
+  .experience-price
+    %span "$#{@experience.price} per person"
+  .experience_date
+    -# =link_to see available-dates popup
+
+-if current_user && current_user.id == @experience.user.id
+  .host-edit-link
+    =link_to "Edit Your Experience", edit_experience_path

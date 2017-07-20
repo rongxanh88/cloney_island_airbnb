@@ -5,7 +5,7 @@ RSpec.feature "As a user with an account", type: :feature do
       user = create(:user)
       visit login_path
 
-      within('.navbar-user-types') do
+      within('.navbar-user-types.nav-item') do
         click_on 'Sign In'
       end
 
@@ -13,7 +13,7 @@ RSpec.feature "As a user with an account", type: :feature do
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       click_button 'Sign In'
-      
+
       expect(current_path).to eq(user_dashboard_index_path(user))
 
       expect(page).to have_content("Logged in as #{user.first_name}")
@@ -28,7 +28,7 @@ RSpec.feature "As a user with an account", type: :feature do
 
       visit login_path
 
-      within('.navbar-user-types') do
+      within('.navbar-user-types.nav-item') do
         click_on 'Sign In'
       end
 

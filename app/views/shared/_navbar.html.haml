@@ -1,14 +1,6 @@
 .navbar-header
   =link_to image_tag("air_bnb_logo.png", :class => 'nav-logo'), root_path
   .navbar-user-types
-    -# =render partial: "current_user_#{current_user.role}" 
     =render partial: "/shared/current_user_traveler"
   .navbar-user-bottom
-    -# -if current_user.traveler?
       .navbar-bottom-links
-    -#   =link_to "Dashboard", user_dashboard_path
-    -#   =link_to "Inbox", user_messages_center_page_path
-    -#   =link_to "Your Listing", user_listings_path
-    -#   =link_to 'Your Trips', user_trips_path
-    -#   =link_to 'Profile', user_profile_path
-    -#   =link_to 'Account', user_account_path

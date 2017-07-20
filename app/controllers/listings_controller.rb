@@ -11,6 +11,9 @@ class ListingsController < ApplicationController
       flash[:message] = "Unable to find listings related to your search."
       @listings = []
     end
+    if @listings.empty?
+      @listings = Listing.all
+    end
   end
 
   def show

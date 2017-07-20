@@ -48,7 +48,7 @@ class Host::ListingsController < ApplicationController
             .permit(
               :name, :description, :address, :house_rules, :accomodates,
               :bathrooms, :bedrooms, :beds, :price, :property_type,
-              :bed_type, :room_type, :pet_type, :cancellation_policy
+              :bed_type, :room_type, :pet_type, :cancellation_policy, :status
             )
     end
 

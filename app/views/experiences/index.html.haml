@@ -1,0 +1,20 @@
+%h1 Experiences
+
+.container.experiences-box
+  -@experiences.each do |e|
+    .item
+      .experience-card{:id => "experience-#{e.id}"}
+        %ul.experience-image.slider
+          -e.experience_images.each do |image|
+            %a{href: experience_path(e)}
+              %li.slide
+                =image_tag(image.image, class: 'img-responsive')
+      .experience-details
+        %span.experience-title
+          =e.title
+        %span.experience_price
+          "$#{e.price}"
+
+.container
+  .sidebar
+    Content

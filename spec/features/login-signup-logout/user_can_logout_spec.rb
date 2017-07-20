@@ -4,11 +4,14 @@ RSpec.feature "Logged in user can log out", type: :feature do
   scenario "user sees the visitor options page" do
     user = create(:user)
     role = create(:role)
-    user.roles << role
+    listing = create(:listing)
+    listing.listing_images.create!(property_image: File.new("#{Rails.root}/lib/assets/baby_penguin.jpg"))
 
+    user.roles << role
+    # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit root_path
 
-    within('.navbar-user-types') do
+    within('.navbar-user-types.nav-item') do
       click_on "Sign In"
     end
 

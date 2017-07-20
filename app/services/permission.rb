@@ -7,14 +7,12 @@ class Permission
   end
 
   def authorized?
-    if user.admin?
-      admin_permissions
-    elsif user.host?
+    if user.host?
       host_permissions
     elsif user.traveler?
       traveler_permissions
     else
-      return true #change this to false when we're ready to utilize permissions
+      return false
     end
   end
 
@@ -22,15 +20,22 @@ class Permission
     attr_reader :user, :controller, :action
 
     def traveler_permissions
-      return true
+      return true if controller == "sessions"
+      return true if controller == "confirmations" && action.in?(%w(new create))
+      return true if controller == "dashboard" && action.in?(%w(index))
+      return true if controller == "homepage" && action.in?(%w(index))
+      return true if controller == "listings" && action.in?(%w(index show))
+      return true if controller == "trips" && action.in?(%w(index new create))
+      return true if controller == "users" && action.in?(%w(new create edit update))
     end
 
     def host_permissions
-      return true
+      return true if controller == "sessions"
+      return true if controller == "confirmations" && action.in?(%w(new create))
+      return true if controller == "dashboard" && action.in?(%w(index))
+      return true if controller == "homepage" && action.in?(%w(index))
+      return true if controller == "listings" && action.in?(%w(index show new create update))
+      return true if controller == "trips" && action.in?(%w(index new create))
+      return true if controller == "users" && action.in?(%w(new create edit update))
     end
-
-    def admin_permissions
-      return true
-    end
-
 end

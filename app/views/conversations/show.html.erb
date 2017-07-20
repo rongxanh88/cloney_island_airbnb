@@ -1,0 +1,33 @@
+<% if current_user.id == @conversation.trip.user_id || current_user.id == @conversation.trip.host_id %>
+  <div class='conversation-show-container'
+    <section>
+      <div class="host-info">
+        <%= image_tag @conversation.trip.listing.user.profile_picture, :class => 'profile-picture-column' %>
+        <p><%= @conversation.trip.listing.user.first_name %></p>
+        <p><%= @conversation.trip.listing.address %></p>
+        <h4>Email</h4>
+        <p><%= @conversation.trip.listing.user.email %></p>
+        <h4>Phone Number</h4>
+        <p><%= @conversation.trip.listing.user.phone_number %></p>
+        <h3>Trip Details</h3>
+        <%= @conversation.trip.listing.description[0..50].gsub(/\s\w+$/,'...') %>
+        <h4>Check In</h4>
+        <p><%= @conversation.trip.start_date %></p>
+        <h4>Check Out</h4>
+        <p><%= @conversation.trip.end_date %></p>
+        <h4>Guests</h4>
+        <p><%= @conversation.trip.num_guests %></p>
+        <h3>Payment</h3>
+        <p><%= number_to_currency(@conversation.trip.listing.price) %></p>
+      </div>
+    </section>
+  </div>
+    <section>
+      <div class="message-wr">
+        <%= render 'messages/messages' %>
+        <%= render 'messages/message_form' %>
+      </div>
+    </section>
+<% else %>
+  <%= controller.redirect_to conversations_path %> 
+<% end %>

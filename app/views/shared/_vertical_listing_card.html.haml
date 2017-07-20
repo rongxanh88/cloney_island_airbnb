@@ -2,7 +2,8 @@
   - @listings.each do |listing|
     .item
       .card-image
-        = link_to image_tag(listing.listing_images.first.property_image), listing_path(listing)
+        - if listing.listing_images.first
+          = link_to image_tag(listing.listing_images.first.property_image), listing_path(listing)
       .card-details
         %span.price.badge
           $#{listing.price}
@@ -10,5 +11,7 @@
           = listing.name
         %span.room
           = "#{listing.room_type} | #{listing.beds} beds"
-      -# .card_review.verticle_card_review
-        -# %p= listing.average_rating
+      .card-details
+        - if current_user && current_user.roles.exists?(name: "host") && listing.user_id == current_user.id
+          %p
+            = link_to "Edit Listing", edit_user_host_listing_path(current_user, listing)

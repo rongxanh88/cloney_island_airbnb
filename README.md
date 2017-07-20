@@ -23,6 +23,20 @@ This project was developed by a group of 5 developers over a 10 day sprint. The 
   * [Rails version 5.1.2](http://installrails.com/)
 
   * [Ruby version 2.3.1](https://www.ruby-lang.org/en/documentation/installation/)
+  
+### Install Figaro
+
+  * From the command line, input figaro exec bundle install. This command will create an application.yml file within the config directory to store all sensitive data. 
+  
+### Syncing with Twilio
+
+  * Sign Up with a Trial Twilio Account. Set up a trial phone number on the Twilio website. Also provide a phone number that will be used as the phone to communicate with in development. Go to the console section and copy both the account SID and auth token. Inside of the config/application.yml file, (it may be hidden depending on your text editor and its current settings) enter the keys with the following environment variables:
+  
+TWILIO_ACCOUNT_SID: '#############################'  
+TWILIO_AUTH_TOKEN: '############################'  
+TWILIO_NUMBER: '+1 720-###-####'  
+
+Once this is complete, your application should be able to send a verification code to the phone number provided on the Twilio website.
 
 ### Running Locally
 
@@ -30,13 +44,10 @@ This project was developed by a group of 5 developers over a 10 day sprint. The 
   * cd into it
   * ```bundle install```
   * ```rake db:schema:load```
+  * ```rake db:setup```
   *```rake import:all```
   *```rails server```
   * visit ```localhost:3000```
-
-### Visit Online
-
- * Launch on - [Heroku]()
 
 ### Built With
 

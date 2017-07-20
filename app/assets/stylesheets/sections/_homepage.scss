@@ -1,4 +1,4 @@
-.container.listing-cards {
+.container.listing-cards, .container.experiences-box {
   width: 66%;
   display: flex;
   flex-wrap: wrap;
@@ -29,9 +29,66 @@
       }
     }
 
-    .card-details {
+    .experience-card {
 
-      .price.badge {
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      .slider {
+        width:282px;
+        height:212px;
+        margin:0px auto;
+        text-align: center;
+        padding:20px;
+        color:white;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1 100%;
+        flex-wrap: wrap;
+        background: fade(#ebebeb, 10%);
+
+
+        .slide {
+          display:flex;
+          flex: 1 100%;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        button {
+          display: none;
+          position: absolute;
+          top: 48%;
+          z-index: 1;
+          background: transparent;
+          border: none;
+
+          &.slick-next {
+            right: 8%;
+          }
+
+          &.slick-prev {
+            left: 8%;
+          }
+        }
+
+        .show {
+          display: block;
+        }
+
+
+      }
+    }
+
+    .card-details, .experience-details {
+      text-align: center;
+      padding: 10px 0px 50px 0px;
+
+      .price.badge, .experience_price.badge {
         background-color: #ff5a5f;
         color: #fff;
         border-radius: 50%;
@@ -39,6 +96,14 @@
         position: absolute;
         top: 5px;
         left: 5px;
+      }
+
+      span.name {
+        font-size: 20px;
+      }
+
+      span.room {
+        padding: 50px;
       }
     }
   }

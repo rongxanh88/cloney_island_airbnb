@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
 
+  mount ActionCable.server, at: '/cable'
+
   resources :confirmations, only: [:new, :create]
   # get '/confirmations', to: 'confirmations#new'
   # post '/confirmations', to: 'confirmations#create'
@@ -37,4 +39,9 @@ Rails.application.routes.draw do
       post '/integration/listings', to: 'integration/listings#create'
     end
   end
+  
+  resources :trips, only: [:index, :update]
+  resources :experiences, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :messages , only: [:create]
+  resources :conversations, only: [:index, :show, :create]
 end

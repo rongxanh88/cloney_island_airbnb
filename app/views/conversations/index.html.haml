@@ -1,0 +1,22 @@
+%table{:class => "table conversations"}
+  %thead
+    %tr
+      %td
+      %td
+      %td
+        %h3
+          %strong All Messages
+      %td
+  %tbody
+    - @conversations.each do |conversation|
+      %tr{:class => "conversation conversation-#{conversation.id}"}
+        %td.profile-picture-column
+          = image_tag conversation.trip.listing.user.profile_picture
+        %td.conversation-name-date
+          %p= conversation.trip.listing.user.first_name
+          %p= conversation.messages.last.updated_at.strftime("%B %d, %Y")
+        %td.message-snippet
+          = link_to conversation.messages.last.content[0..50].gsub(/\s\w+$/,'...'), conversation_path(conversation)
+        %td
+          %p= conversation.trip.trip_status
+          %p= number_to_currency(conversation.trip.listing.price)

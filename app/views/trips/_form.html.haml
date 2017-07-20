@@ -2,10 +2,10 @@
   = form_for [@listing, @trip], :url => {:controller => 'trips', :action => "create"} do |f|
     .form-group
       = f.label :start_date, 'Start Date'
-      = f.text_field :start_date
+      = f.text_field :start_date, placeholder: 'YYYY/MM/DD'
     .form-group
       = f.label :end_date, 'End Date'
-      = f.text_field :end_date
+      = f.text_field :end_date, placeholder: 'YYYY/MM/DD'
     .form-group
       = f.label :num_guests, 'Guests'
       = f.text_field :num_guests

@@ -29,7 +29,6 @@ RSpec.feature "Host can do the following with listings", type: :feature do
     end
     listing = Listing.first
     expect(page).to have_current_path(listing_path(listing))
-    #add expectations after adding more content to listing show page
   end
 
   scenario 'host can edit listing' do

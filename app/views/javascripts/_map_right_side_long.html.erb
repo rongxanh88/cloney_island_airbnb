@@ -1,0 +1,19 @@
+<div id="map"></div>
+  <script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 11,
+      center:{lat: <%= @listings.first.latitude %>,
+              lng: <%= @listings.first.longitude %>}
+    });
+    <% @listings.each do |listing| %>
+      var marker = new google.maps.Marker({
+        position: {lat: <%= listing.latitude %>, lng: <%= listing.longitude %>},
+        map: map
+      });
+    <% end %>
+  }
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Google_API_Key'] %>&callback=initMap"async defer>
+</script>

@@ -25,6 +25,8 @@ RSpec.describe User, type: :model do
     it {should have_many(:user_roles)}
     it {should have_many(:roles).through(:user_roles)}
     it {should have_many(:listings)}
+    it {should have_many(:messages)}
+    it {should have_many(:conversations).through(:messages)}
   end
 
   describe 'password' do
@@ -37,16 +39,6 @@ RSpec.describe User, type: :model do
       full_name = user.full_name
 
       expect(full_name).to eq(user.first_name + " " + user.last_name)
-    end
-
-    it 'check for admin role' do
-      role = create(:role, name: "admin")
-      user = create(:user)
-      other_user = create(:user)
-      user.roles << role
-
-      expect(user.admin?).to be(true)
-      expect(other_user.admin?).to be(false)
     end
 
     it 'check for host role' do

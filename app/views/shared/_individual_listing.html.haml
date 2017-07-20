@@ -74,13 +74,12 @@
           %hr
           .section-titile
             = "Listing Pictures"
-          - @listing.listing_images.each do |image|
-            %p 
-              = image_tag image.property_image
+          - if @listing.listing_images
+            - @listing.listing_images.each do |image|
+              %p 
+                = image_tag image.property_image
           %br 
           %hr
           .row
             .column
               = button_to 'Book Now', new_listing_trip_path(@listing), method: :get
--# .button.book_now_button
--#   = button_to 'Book Now', new_listing_trip_path(@listing), method: :get

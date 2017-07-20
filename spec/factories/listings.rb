@@ -19,7 +19,8 @@ FactoryGirl.define do
     room_type 'entire_home'
     cancellation_policy 0
     status 0
-
+    latitude "59.325"
+    longitude "18.070 "
   end
 
 

@@ -1,7 +1,10 @@
-<div class="container listing-cards">
+<div class="container listing-cards host-listings">
+  <div class="container host-nav">
+  <%=render partial: "shared/host_nav" %>
+</div>  
   <%=render partial: "shared/vertical_listing_card" %>
 </div>
 
 <div class="container map-side-long">
-  <%=render partial: "shared/map_right_side_long" %>
+  <%=render partial: "javascripts/map_right_side_long" %>
 </div>
