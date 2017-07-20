@@ -36,4 +36,16 @@ class Listing < ApplicationRecord
     num_guests = params[:search_num_guests].to_i
     where("LOWER(listings.address) LIKE ? AND listings.accomodates >= ?", "%#{address}%", num_guests).listed
   end
+
+  def self.check_for_new
+    listing_attrs = $redis.get("listing")
+    $redis.del("listing")
+    Listing.create!(listing_attrs) unless listing_attrs.nil?
+  end
+
+  def self.check_for_old
+    listing_id = $redis.get("del_listing")
+    $redis.del("del_listing")
+    Listing.destroy(listing_id) unless listing_id.nil?
+  end
 end

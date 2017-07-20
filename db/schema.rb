@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719055134) do
+ActiveRecord::Schema.define(version: 20170720150330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20170719055134) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["trip_id"], name: "index_conversations_on_trip_id"
+  end
+
+  create_table "crono_jobs", force: :cascade do |t|
+    t.string "job_id", null: false
+    t.text "log"
+    t.datetime "last_performed_at"
+    t.boolean "healthy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_crono_jobs_on_job_id", unique: true
   end
 
   create_table "exp_experience_categories", force: :cascade do |t|
@@ -173,6 +183,7 @@ ActiveRecord::Schema.define(version: 20170719055134) do
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
     t.string "verification_code"
+    t.text "api_token"
   end
 
   add_foreign_key "conversations", "trips"

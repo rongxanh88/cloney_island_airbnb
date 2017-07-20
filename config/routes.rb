@@ -31,8 +31,15 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
   end
 
-  resources :trips, only: [:index, :update] do
+  resources :trips, only: [:index]
+
+  namespace :api do
+    namespace :v1 do
+      get '/access_token', to: 'jwt#create'
+    end
   end
+  
+  resources :trips, only: [:index, :update]
   resources :experiences, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :messages , only: [:create]
   resources :conversations, only: [:index, :show, :create]

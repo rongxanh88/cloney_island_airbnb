@@ -23,17 +23,20 @@ gem 'faker'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'redis'
+gem 'jwt'
 gem 'twilio-ruby', '~> 4.4.0'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'redis'
+gem 'redis-namespace'
+gem 'sidekiq'
 gem 'geocoder'
 gem "jquery-slick-rails"
 gem 'font-awesome-rails'
+gem 'crono'
 
 group :development, :test do
   gem 'pry'
   gem 'pry-state'
-  gem 'launchy'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'factory_girl_rails'
   gem 'capybara'

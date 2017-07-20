@@ -30,7 +30,8 @@ namespace :import do
         phone_number: "#{[*100..999].sample}-555-#{Faker::PhoneNumber.unique.subscriber_number}",
         email:  Faker::Internet.unique.email,
         password: "password",
-        profile_picture: "http://lorempixel.com/400/300/cats"
+        profile_picture: "http://lorempixel.com/400/300/cats",
+        api_token: SecureRandom.uuid.gsub(/\-/,'')
         )
         user.roles << Role.find_by(name: "traveler")
 
