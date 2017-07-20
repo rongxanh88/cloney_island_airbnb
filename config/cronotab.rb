@@ -13,7 +13,15 @@
 #
 # Crono.perform(TestJob).every 2.days, at: '15:30'
 #
-Crono.perform(CreateListingsJob).every 1.day, at: {hour: 9, min: 20}
-Crono.perform(DeleteListingsJob).every 1.day, at: {hour: 9, min: 20}
-# Crono.perform(CreateListingsJob).every 1.day, at: {hour: 12, min: 0}
-# Crono.perform(DeleteListingsJob).every 1.day, at: {hour: 12, min: 0}
+Crono.perform(CreateListingsJob).every 1.day, at: {hour: 10, min: 0}
+Crono.perform(DeleteListingsJob).every 1.day, at: {hour: 10, min: 0}
+Crono.perform(CreateListingsJob).every 1.day, at: {hour: 10, min: 10}
+Crono.perform(DeleteListingsJob).every 1.day, at: {hour: 10, min: 10}
+Crono.perform(CreateListingsJob).every 1.day, at: {hour: 10, min: 20}
+Crono.perform(DeleteListingsJob).every 1.day, at: {hour: 10, min: 20}
+Crono.perform(CreateListingsJob).every 1.day, at: {hour: 10, min: 30}
+Crono.perform(DeleteListingsJob).every 1.day, at: {hour: 10, min: 30}
+Crono.perform(CreateListingsJob).every 1.day, at: {hour: 10, min: 40}
+Crono.perform(DeleteListingsJob).every 1.day, at: {hour: 10, min: 40}
+Crono.perform(CreateListingsJob).every 1.day, at: {hour: 10, min: 50}
+Crono.perform(DeleteListingsJob).every 1.day, at: {hour: 10, min: 50}

@@ -4,6 +4,9 @@ class CreateListingsJob < ApplicationJob
   def perform
     listing_attrs = $redis.get("listing")
     $redis.del("listing")
-    Listing.create!(listing_attrs) unless listing_attrs.nil?
+    if listing_attrs != nil
+      formatted_attrs = JSON.parse(listing_attrs)
+      Listing.create!(formatted_attrs)
+    end
   end
 end

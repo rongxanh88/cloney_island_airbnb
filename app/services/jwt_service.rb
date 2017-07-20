@@ -13,7 +13,7 @@ class JWTService
 
   private
     def encode_jwt
-      user = User.find_by(api_token: api_token)
+      user = User.find_by(api_token: @api_token)
       if user.nil?
         unauthorized_user
       else
