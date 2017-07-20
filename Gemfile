@@ -26,6 +26,10 @@ gem 'omniauth-facebook'
 gem 'jwt'
 gem 'twilio-ruby', '~> 4.4.0'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'redis'
+gem 'redis-namespace'
+gem 'sidekiq'
+gem 'whenever'
 
 
 group :development, :test do
