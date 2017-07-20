@@ -4,7 +4,6 @@ class CreateListingsJob < ApplicationJob
   def perform
     listing_attrs = $redis.get("listing")
     $redis.del("listing")
-
-    #L unless listing_attrs.nil?
+    Listing.create!(listing_attrs) unless listing_attrs.nil?
   end
 end

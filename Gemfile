@@ -32,6 +32,7 @@ gem 'sidekiq'
 gem 'geocoder'
 gem "jquery-slick-rails"
 gem 'font-awesome-rails'
+gem 'crono'
 
 group :development, :test do
   gem 'pry'
