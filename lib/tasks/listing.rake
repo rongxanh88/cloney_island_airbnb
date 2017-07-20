@@ -1,3 +1,6 @@
+require 'redis'
+require 'redis-namespace'
+
 namespace :listing do
   desc "Check Redis"
   task :all => [:create_listing, :delete_listing]
