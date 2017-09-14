@@ -12,13 +12,16 @@
       <%= f.text_field :last_name %>
 
       <%= f.label :phone_number, "Phone number" %>
-      <%= f.text_field :phone_number %>
+      <%= f.telephone_field :phone_number %>
 
       <%= f.label :birthday, "Birthday" %>
       <%= f.date_select :birthday, start_year: 1900, end_year: Date.today.year %>
 
       <%= f.label :password, "Password" %>
-      <%= f.text_field :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Password" %>
+      <%= f.password_field :password_confirmation %>
 
       <%= f.submit "Sign Up" %>
     <% end %>
