@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    flash[:error] = "All fields must be filled in."
   end
 
   def create
@@ -14,7 +15,6 @@ class UsersController < ApplicationController
       redirect_to new_confirmation_path
     else
       render :new
-      flash[:error] = "Please re-enter your information."
     end
   end
 
