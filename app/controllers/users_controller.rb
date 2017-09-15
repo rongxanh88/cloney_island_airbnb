@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       redirect_to new_confirmation_path
     else
       render :new
+      flash[:error] = "Please re-enter your information."
     end
   end
 
