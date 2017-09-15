@@ -12,15 +12,18 @@
       <%= f.text_field :last_name %>
 
       <%= f.label :phone_number, "Phone number" %>
-      <%= f.text_field :phone_number %>
+      <%= f.telephone_field :phone_number %>
 
       <%= f.label :birthday, "Birthday" %>
       <%= f.date_select :birthday, start_year: 1900, end_year: Date.today.year %>
 
       <%= f.label :password, "Password" %>
-      <%= f.text_field :password %>
+      <%= f.password_field :password %>
 
       <%= f.submit "Sign Up" %>
     <% end %>
   </div>
 </div>
+<% if flash[:error] %>
+<div class="flash"><%= flash[:error] %></div>
+<% end %>

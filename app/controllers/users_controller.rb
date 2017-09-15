@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    flash[:error] = "All fields must be filled in."
   end
 
   def create
@@ -12,7 +13,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       ConfirmationSender.send_confirmation_to(@user)
       redirect_to new_confirmation_path
-      #redirect_to user_dashboard_index_path(@user)
     else
       render :new
     end

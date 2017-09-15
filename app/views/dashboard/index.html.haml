@@ -1,6 +1,12 @@
 %h1 User Profile
 .container-profile
   .row
+    .column
+      .flash
+        - if flash[:notice]
+          %p
+            = flash[:notice]
+  .row
     .col-1
       .profile-pic
         - if @user.profile_picture
