@@ -26,7 +26,7 @@ RSpec.describe 'As a guest user' do
     fill_in "Email", with: "t@tty.com"
     fill_in "First name", with: user.first_name
     fill_in "Last name", with: user.last_name
-    fill_in "Phone number", with: "720-290-0960"
+    fill_in "Phone number", with: "720-361-6510"
     select "2012", from: "user_birthday_1i"
     select "March", from: "user_birthday_2i"
     select "14", from: "user_birthday_3i"

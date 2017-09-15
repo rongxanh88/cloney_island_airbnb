@@ -11,8 +11,7 @@ class UsersController < ApplicationController
       @user.roles << Role.find_by(name: "traveler")
       session[:user_id] = @user.id
       ConfirmationSender.send_confirmation_to(@user)
-      redirect_to new_confirmation_path(@user)
-      #redirect_to user_dashboard_index_path(@user)
+      redirect_to new_confirmation_path
     else
       render :new
     end
