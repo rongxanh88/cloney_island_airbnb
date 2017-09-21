@@ -2,7 +2,7 @@
   = @listings.each do |listing|
     .card.horizontal_card.listing_#{listing.id}
       .card_image.horizontal_card_image
-        =link_to image_tag(listing.image_url), listing_path(listing)
+        =link_to image_tag(listing.image_url), listing_path(listing.id)
       .card_title.horizontal_card_title
         %h4= listing.title
       .card_location.horizontal_card_location
@@ -12,4 +12,4 @@
       = form_for [:host, listing] do |l|
         .form-group
           = f.collection_select(:status, Listing.statuses, :first, :first, select: listing.status)
-      = button_to "Preview", listing_path(listing)
+      = button_to "Preview", listing_path(listing.id)

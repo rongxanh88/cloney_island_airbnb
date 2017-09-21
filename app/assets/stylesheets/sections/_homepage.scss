@@ -1,5 +1,5 @@
 .container.listing-cards, .container.experiences-box {
-  width: 66%;
+  width: 86%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -50,7 +50,6 @@
         flex-wrap: wrap;
         background: fade(#ebebeb, 10%);
 
-
         .slide {
           display:flex;
           flex: 1 100%;
@@ -79,12 +78,10 @@
         .show {
           display: block;
         }
-
-
       }
     }
 
-    .card-details, .experience-details {
+    .card-details{
       text-align: center;
       padding: 10px 0px 50px 0px;
 
@@ -98,12 +95,24 @@
         left: 5px;
       }
 
-      span.name {
+      a.name {
         font-size: 20px;
       }
 
       span.room {
-        padding: 50px;
+
+      }
+    }
+
+    .experience-details {
+      text-align: center;
+      padding: 10px 0px 20px 0px;
+
+      span.experience-title, .experience_price {
+        font-size: 1.3em;
+      }
+      .divider hr{
+        border-color: rgb(255,107,111);
       }
     }
   }
@@ -121,4 +130,8 @@
 h2 select {
  display: inline-block;
  float: left;
+}
+
+h1.spacer-tile {
+  height: 50px;
 }

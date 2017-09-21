@@ -8,12 +8,20 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/dsl'
 require "paperclip/matchers"
+require 'webmock/rspec'
+require 'vcr'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/cassettes"
+  config.hook_into :webmock
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 

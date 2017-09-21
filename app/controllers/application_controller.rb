@@ -1,4 +1,10 @@
+require "application_responder"
+
 class ApplicationController < ActionController::Base
+  self.responder = ApplicationResponder
+  respond_to :html
+
+  before_action :assign_env_variables
   protect_from_forgery with: :exception
 
   helper_method :current_user
@@ -15,6 +21,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def assign_env_variables
+    gon.mapbox_api_key = ENV["MAPBOX_API_KEY"]
+    gon.airbnb_key = ENV['airbnb_key']
+  end
 
   private
 

@@ -1,0 +1,19 @@
+.listings
+  - if @listings
+    %h3 Current Property Listings
+    - @listings.each do |listing|
+      %ul.item
+        .list-card-image
+          - if listing.listing_images.first
+            = link_to image_tag(listing.listing_images.first.property_image), listing_path(listing)
+        .list-card-details
+          %span.price.badge
+            $#{listing.price}
+          %h4.name
+            = link_to listing.name, listing_path(listing)
+          %span.room
+            = "#{listing.room_type} | #{listing.beds} beds"
+        %span.edit
+          - if current_user && current_user.roles.exists?(name: "host") && listing.user_id == current_user.id
+            %p
+              = link_to "Edit Listing", edit_user_host_listing_path(current_user, listing)

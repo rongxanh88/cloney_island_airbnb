@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    flash[:error] = "All fields must be filled in."
   end
 
   def create
@@ -12,19 +13,21 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       ConfirmationSender.send_confirmation_to(@user)
       redirect_to new_confirmation_path
-      #redirect_to user_dashboard_index_path(@user)
     else
       render :new
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
   def update
+    delete_picture?
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if !params[:delete] && @user.update_attributes(user_params)
+      redirect_to user_dashboard_index_path(@user)
+    elsif params[:delete]
       redirect_to user_dashboard_index_path(@user)
     else
       render 'edit'
@@ -42,4 +45,12 @@ class UsersController < ApplicationController
             )
   end
 
+  def delete_picture?
+    if params[:delete]
+      @user = User.find(params[:id])
+      @user.profile_picture.destroy
+      @user.save
+    else
+    end
+  end
 end

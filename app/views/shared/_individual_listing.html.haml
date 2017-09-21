@@ -8,13 +8,14 @@
           .address
             = "#{@listing.address}"
           %hr
-          .section-title
-            = "Amenities"
-          .row
-            %p
-              - @listing.amenities.each do |amenity|
-                %span
-                  = "  #{amenity.name}  "
+          -if @listing.amenities && @listing.amenities.count != 0
+            .section-title
+              = "Amenities"
+            .row
+              %p
+                - @listing.amenities.each do |amenity|
+                  %span
+                    = "  #{amenity.name}  "
           %hr
           .row
             .column
@@ -31,7 +32,7 @@
                 = "Bathrooms: #{@listing.bathrooms}"
               %p
                 = "Bedrooms: #{@listing.bedrooms}"
-              %p 
+              %p
                 = "Number of Beds: #{@listing.beds}"
             .col-half
               %p
@@ -54,7 +55,7 @@
             = "House Rules"
           .row
             .column
-              %p 
+              %p
                 = @listing.house_rules
           %hr
           .section-title
@@ -62,24 +63,24 @@
           .row
             - policy = CancellationPolicy.new(@listing.cancellation_policy)
             .column-half
-              %p 
+              %p
                 = policy.name
             .column-half
-              %p 
+              %p
                 = policy.refund
           .row
             .column
-              %p 
+              %p
                 = policy.description
           %hr
           .section-titile
             = "Listing Pictures"
           - if @listing.listing_images
             - @listing.listing_images.each do |image|
-              %p 
-                = image_tag image.property_image
-          %br 
+              %p
+                = image_tag image
+          %br
           %hr
           .row
             .column
-              = button_to 'Book Now', new_listing_trip_path(@listing), method: :get
+              = button_to 'Book Now', new_listing_trip_path(@listing.id), method: :get

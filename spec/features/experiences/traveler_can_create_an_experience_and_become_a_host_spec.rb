@@ -36,7 +36,7 @@ RSpec.describe 'As a traveler' do
       fill_in "State", :with => "CO"
       fill_in "Zipcode", :with => "90210"
 
-      click_on "Create Experience"
+      click_on "Create Your Experience"
 
       expect(@user.roles.first.name).to eq("host")
     end

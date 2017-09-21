@@ -11,9 +11,11 @@
                 =image_tag(image.image, class: 'img-responsive')
       .experience-details
         %span.experience-title
-          =e.title
+          =link_to e.title, experience_path(e)
         %span.experience_price
           "$#{e.price}"
+        .divider
+          %hr
 
 .container
   .sidebar

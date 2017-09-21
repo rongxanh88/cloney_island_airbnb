@@ -1,11 +1,17 @@
 .form_container
-  .user_forms
+  .col-md-3
+  .user_forms.col-md-6
     %h2 Login
-    = form_for(:session, url: login_path) do |f|
-      = f.label :email, class: 'label'
-      = f.text_field :email, class: 'text_input'
-      = f.label :password, class: 'label'
-      = f.password_field :password, class: 'text_input'
-      = f.submit "Sign In", class: 'login-submit'
+    = form_for(:session, url: login_path, :html => {:class => "form-horizontal"}) do |f|
+      .field.form-group
+      = f.label :email, 'Email', class: 'control-label'
+      = f.text_field :email
+      .field.form-group
+      = f.label :password, 'Password', class: 'control-label'
+      = f.password_field :password
+      .actions.form-group
+        .col-sm-12
+          = f.submit "Sign In", class: 'login-submit'
     %h3
       Don't have an account? #{link_to "Create Account", new_user_path}
+  .col-md-3

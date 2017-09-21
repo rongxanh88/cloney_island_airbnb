@@ -1,0 +1,43 @@
+-if current_user.id == @conversation.trip.user_id || current_user.id == @conversation.trip.host_id
+  .conversation-show-container
+    %section
+      .host-info
+        -if @listing.class == Airbnb
+          =image_tag @listing.user_profile_picture, :class => 'profile-picture-column'
+          %p
+            = @listing.user_first_name
+        -elsif @listing.class == Listing
+          = image_tag @listing.user.profile_picture, :class => 'profile-picture-column'
+          %p
+            = @listing.address
+        -if @conversation.trip.listing.user
+          %h4 Email
+          %p
+            = @conversation.trip.listing.user.email
+        -if @conversation.trip.listing.user
+          %h4 Phone Number
+          %p
+            = @conversation.trip.listing.user.phone_number
+        %h3 Trip Details
+        %p
+          = @listing.description[0..50].gsub(/\s\w+$/,'...')
+        %h4 Check In
+        %p
+          = @conversation.trip.start_date
+        %h4 Check Out
+        %p
+          = @conversation.trip.end_date
+        %h4 Guests
+        %p
+          = @conversation.trip.num_guests
+        %h4 Payment
+        %p
+          =number_to_currency(@listing.price)
+
+    %section
+      .message-wr
+        =render :partial => 'messages/messages'
+        =render :partial => 'messages/message_form'
+
+-else
+  = controller.redirect_to conversations_path

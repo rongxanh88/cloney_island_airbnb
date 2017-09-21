@@ -1,11 +1,18 @@
 %h1 User Profile
 .container-profile
   .row
+    .column
+      .flash
+        - if flash[:notice]
+          %p
+            = flash[:notice]
+  .row
     .col-1
       .profile-pic
-        - if @user.profile_picture
-          =image_tag @user.profile_picture
-        %h3=link_to "Edit Profile", edit_user_path(@user)
+        - if @user.profile_picture.instance.profile_picture_file_name
+          = image_tag @user.profile_picture
+          = link_to "delete picture", user_path(@user.id, delete: 'yes'), {method: :patch}
+        %h3= link_to "Edit Profile", edit_user_path(@user)
     .col-2
       %h3
         = "First Name: #{@user.first_name}"

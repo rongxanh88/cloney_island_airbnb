@@ -6,11 +6,10 @@ class Search < ApplicationRecord
     end
   end
 
-  def self.existing_trips_overlap_request(listing, params)
+  def self.existing_trips_overlap_request(current_user, params)
     start_date = params['search_start_date'].to_date
     end_date = params['search_end_date'].to_date
-
-    listing.trips.any? do |trip|
+    current_user.trips.any? do |trip|
       overlaps(trip, start_date, end_date)
     end
   end

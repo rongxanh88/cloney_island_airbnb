@@ -1,0 +1,7 @@
+- if flash[:error]
+  .flash= flash[:error]
+.kaminari
+  = form_for :confirmations, :url => { :action => :create } do |f|
+    Verification Code Sent to Your Phone: #{f.text_field :verification_code}
+    %br/
+    = f.submit "Check Validation Code"

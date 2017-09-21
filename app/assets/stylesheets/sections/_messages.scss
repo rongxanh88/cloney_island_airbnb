@@ -1,0 +1,27 @@
+th.title {
+  padding-left: 0px;
+}
+
+h3.empty-container {
+  text-align: left
+}
+
+tbody.conversations {
+  tr {
+    height: 600px;
+    vertical-align: text-top;
+    padding: 100px;
+    background: #edefed;
+    margin: 100px;
+
+  }
+    tr.spacer {
+      background: white;
+      height: 30px;
+    }
+
+    h3.empty-container {
+      padding-left: 20px;
+      padding-top: 10px; 
+    }
+}

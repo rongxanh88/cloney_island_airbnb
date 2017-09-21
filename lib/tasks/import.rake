@@ -2,7 +2,7 @@ require 'csv'
 
 namespace :import do
     desc "Imports all seed data"
-    task :all => [:regenerate, :roles, :users, :amenities, :listings, :listing_images, :trips, :experience_categories, :experiences, :experience_images]
+    task :all => [:roles, :users, :amenities, :listings, :trips, :experience_categories, :experiences, :experience_images]
 
     desc "wipes database before seeding"
     task :regenerate do
@@ -22,7 +22,7 @@ namespace :import do
     desc "Users"
     task users: :environment do
       #change to 1000 later
-      30.times do |n|
+      40.times do |n|
         user = User.create!(
         birthday: Faker::Date.birthday(18, 97),
         first_name: Faker::Name.first_name,
@@ -66,44 +66,32 @@ namespace :import do
       addresses = import_addresses(hosts.count)
       n = 0
         hosts.each do |host|
-
           listing = Listing.create!(
-          description: ["Suite of three beautifully furnished rooms set amongst the trees. Just minutes from downtown, this secluded property is an urban retreat like no other. The treehouse provides and intimate, simple and calming retreat for 2 people. The treehouse is the subject of innumerable articles, blogs and was recently featured on Treehouse Masters Ultimate Treehouses.", "Spend a unforgettable holiday in the enchanting surroundings of the town of Cisternino (reachable from the near airports of Bari and Brindisi).Trullo Edera offers a heaven of peace and tranquillity, set in an elevated position with a stunning view. It’s the perfect place if you like nature. You can stay under an olive tree reading a good book, you can have a walk in the small country streets or go to the nearest beaches.", "You can even easily visit any of the sights in Apulia such as the caves of Castellana, the trulli of Alberobello, the baroque cities of Lecce and Martina Franca, the excavations of Egnazia, the zoosafari of Fasano, Castel del Monte with Frederick’s castle, Grottaglie famous for its ceramics, Taranto, Brindisi and Lecce museums.", "Set on the sacred Ayung river valley, this all bamboo house is unique. First established in 2010, it is part of a master-planned community of luxurious bamboo villas with distinctive blonde roofs. Entering the house is a feast to the eyes and a showcase at how black and white bamboo can be combined in all shapes and pattern to create a stunning collection of luxurious floors, walls, ceiling, stairs and railings. Even the roof is an innovative arrangement of bamboo shingles."].sample,
-          address: "#{addresses[n]} Denver CO, 80205",
-          user_id: host.id,
-          property_type: [0, 1, 2, 3, 4].sample,
-          room_type: [0, 1, 2].sample,
-          bed_type: [0, 1, 2, 3, 4, 5].sample,
-          accomodates: [1, 2, 3, 4, 5, 6].sample,
-          bathrooms: [1, 2, 3, 4, 5, 6].sample,
-          name: "Home of #{Faker::Ancient.god} #{host.id}",
-          bedrooms: [1, 2, 3, 4, 5, 6].sample,
-          beds: [1, 2, 3, 4, 5, 6].sample,
-          pet_type: [0, 1, 2, 3, 4].sample,
-          price: [100, 200, 300, 400, 500, 600].sample,
-          house_rules: ["No Smoking", "No Teenagers", "Hippies Use Back Door"].sample,
-          cancellation_policy: [0, 1, 2].sample,
-          status: ["unlisted", "listed"].sample
-          )
-          5.times do
-            listing.amenities << amenities.sample
-          end
-          n += 1
-          puts "Listing #{listing.id} created!"
-      end
-      puts "Listings loaded"
-    end
-
-    desc "Listing Images"
-    task listing_images: :environment do
-      listings = Listing.all
-      listings.each do |listing|
-        3.times do
-          listing.listing_images.create!(property_image: "http://lorempixel.com/400/300/city")
-        end
-        puts "listing #{listing.id} images loaded"
-      end
-      puts "Listing Images loaded"
+           description: ["Suite of three beautifully furnished rooms set amongst the trees. Just minutes from downtown, this secluded property is an urban retreat like no other. The treehouse provides and intimate, simple and calming retreat for 2 people. The treehouse is the subject of innumerable articles, blogs and was recently featured on Treehouse Masters Ultimate Treehouses.", "Spend a unforgettable holiday in the enchanting surroundings of the town of Cisternino (reachable from the near airports of Bari and Brindisi).Trullo Edera offers a heaven of peace and tranquillity, set in an elevated position with a stunning view. It’s the perfect place if you like nature. You can stay under an olive tree reading a good book, you can have a walk in the small country streets or go to the nearest beaches.", "You can even easily visit any of the sights in Apulia such as the caves of Castellana, the trulli of Alberobello, the baroque cities of Lecce and Martina Franca, the excavations of Egnazia, the zoosafari of Fasano, Castel del Monte with Frederick’s castle, Grottaglie famous for its ceramics, Taranto, Brindisi and Lecce museums.", "Set on the sacred Ayung river valley, this all bamboo house is unique. First established in 2010, it is part of a master-planned community of luxurious bamboo villas with distinctive blonde roofs. Entering the house is a feast to the eyes and a showcase at how black and white bamboo can be combined in all shapes and pattern to create a stunning collection of luxurious floors, walls, ceiling, stairs and railings. Even the roof is an innovative arrangement of bamboo shingles."].sample,
+           address: "#{addresses[n]} Denver CO, 80205",
+           user_id: host.id,
+           airbnb_id: rand(0..10000),
+           property_type: [0, 1, 2, 3, 4].sample,
+           room_type: [0, 1, 2].sample,
+           bed_type: [0, 1, 2, 3, 4, 5].sample,
+           accomodates: [1, 2, 3, 4, 5, 6].sample,
+           bathrooms: [1, 2, 3, 4, 5, 6].sample,
+           name: "Home of #{Faker::Ancient.god} #{host.id}",
+           bedrooms: [1, 2, 3, 4, 5, 6].sample,
+           beds: [1, 2, 3, 4, 5, 6].sample,
+           pet_type: [0, 1, 2, 3, 4].sample,
+           price: [100, 200, 300, 400, 500, 600].sample,
+           house_rules: ["No Smoking", "No Teenagers", "Hippies Use Back Door"].sample,
+           cancellation_policy: [0, 1, 2].sample,
+           status: ["unlisted", "listed"].sample
+           )
+         5.times do
+           listing.amenities << amenities.sample
+         end
+         n += 1
+         puts "Listing #{listing.id} created!"
+       end
+     puts "Listings loaded"
     end
 
     desc "Trips"
@@ -121,7 +109,7 @@ namespace :import do
         trip_status: ["requested", "pending", "accepted", "paid"].sample,
         start_date: Faker::Date.between(1.days.from_now, 3.days.from_now),
         end_date: Faker::Date.between(4.days.from_now, 6.days.from_now),
-        num_guests: [*1..listing.accomodates].sample
+        num_guests: rand(0..5)
         )
         puts "Trip #{trip.id} created!"
         conversation = Conversation.create(trip_id: trip.id)
@@ -189,7 +177,6 @@ namespace :import do
       end
       puts "Experience Images loaded"
     end
-
 
   private
 

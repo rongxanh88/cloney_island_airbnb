@@ -11,6 +11,7 @@ h1 {
     background: #f4f7f8;
     border-radius: 8px;
     font-family: Georgia, "Times New Roman", Times, serif;
+    text-align: center
  }
 
 .new_listing_container input[type="name"],
@@ -21,6 +22,7 @@ h1 {
 .new_listing_container input[type="bedrooms"],
 .new_listing_container input[type="beds"],
 .new_listing_container input[type="price"],
+.new_listing_container input[type="text"],
 .new_listing_container textarea,
 .new_listing_container select {
     font-family: Georgia, "Times New Roman", Times, serif;
@@ -40,7 +42,6 @@ h1 {
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     margin-bottom: 30px;
-
 }
 .new_listing_container input[type="name"]:focus,
 .new_listing_container input[type="description"]:focus,
@@ -50,6 +51,7 @@ h1 {
 .new_listing_container input[type="bedrooms"]:focus,
 .new_listing_container input[type="beds"]:focus,
 .new_listing_container input[type="price"]:focus,
+.new_listing_container input[type="text"]:focus,
 .new_listing_container textarea:focus,
 .new_listing_container select:focus{
     background: #d2d9dd;
@@ -93,4 +95,140 @@ h1 {
 .new_listing_container input[type="button"]:hover
 {
     background: #ff5a5f;
+}
+
+li.experience-name, h4 {
+  text-align: left
+}
+
+ul.experience, p {
+  text-align: left
+}
+
+.container.host-listings {
+  width: 66%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: flex-start;
+
+  ul.item {
+    position: relative;
+    flex-basis: 30%;
+    margin: 0 auto;
+
+    .list-card-image {
+      overflow: hidden;
+
+      img {
+        display: block;
+        width: 100%;
+        -moz-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+
+      img:hover {
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+        overflow: hidden;
+      }
+    }
+
+    .list-experience-card {
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      .slider {
+        width:282px;
+        height:212px;
+        margin:0px auto;
+        text-align: center;
+        padding:20px;
+        color:white;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1 100%;
+        flex-wrap: wrap;
+        background: fade(#ebebeb, 10%);
+
+
+        .slide {
+          display:flex;
+          flex: 1 100%;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        button {
+          display: none;
+          position: absolute;
+          top: 48%;
+          z-index: 1;
+          background: transparent;
+          border: none;
+
+          &.slick-next {
+            right: 8%;
+          }
+
+          &.slick-prev {
+            left: 8%;
+          }
+        }
+
+        .show {
+          display: block;
+        }
+
+
+      }
+    }
+
+    .list-card-details, .list-experience-details {
+      text-align: left;
+      padding: 10px 0px 30px 0px;
+
+      .price.badge, .experience_price.badge {
+        background-color: #ff5a5f;
+        color: #fff;
+        border-radius: 50%;
+        padding: 10px;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        margin-bottom: 20px;
+        z-index: -1
+      }
+
+      h4.name {
+        margin-top: 30px;
+        font-size: 20px;
+        z-index: 1;
+      }
+
+      span.room {
+        padding: 50px;
+        margin-bottom: 15px;
+        color: green;
+        z-index: -1
+      }
+
+      span.edit {
+        padding-top: 15px;
+        margin-top: 15px;
+        color: green
+      }
+    }
+  }
+}
+
+.experience-form {
+  align-items: center;
 }

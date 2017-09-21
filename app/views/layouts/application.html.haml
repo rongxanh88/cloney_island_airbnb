@@ -3,9 +3,14 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title CloneyIslandAirbnb
+    = Gon::Base.render_data
     = csrf_meta_tags
+    %link{:rel => "stylesheet", :href => "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"}
+    %script{:src =>"http://api.tiles.mapbox.com/mapbox.js/v3.1.1/mapbox.js"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{:rel => "stylesheet", :href =>"http://api.tiles.mapbox.com/mapbox.js/v3.1.1/mapbox.css"}
+    %script{:type => "text/javascript", :src =>"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"}
   %body
     .user-widget
       -if current_user
@@ -21,9 +26,11 @@
         .nav-right.nav-item
           .navbar-user-types.nav-item
             - if current_user
-              %span=link_to "Messages", conversations_path
+              =link_to conversations_path do
+                %i{:class => "fa fa-envelope-open fa-lg"}
               %span.signin-dropdown.nav-item
-                %span=link_to "Profile", "#", class: 'dropbtn'
+                %a.dropdown-toggle
+                  %i{:class => "fa fa-user fa-2x"}
                 #hostDropdown.signin-dropdown-content
                   %span=link_to "Profile", user_dashboard_index_path(current_user)
                   %br
@@ -41,12 +48,12 @@
 
               #hostDropdown.host-dropdown-content
                 -if current_user && current_user.host?
-                  %span=link_to "Host Reservations", host_dashboard_index_path
-                  %span=link_to "Host Listings", user_host_listings_path(current_user)
-                -else
-                  %span=link_to "Become a Host", login_path
-                %br
-                %span=link_to "Host an Experience", new_experience_path
+                  %span=link_to "Your Current Listings", user_host_listings_path(current_user)
+                  %span=link_to "Host your Property", new_user_host_listing_path(current_user)
+                  %span=link_to "Host an Experience", new_experience_path
+                -elsif current_user
+                  %span=link_to "Host your Property", new_user_host_listing_path(current_user)
+                  %span=link_to "Host an Experience", new_experience_path
             %span=link_to "Experiences", experiences_path
             %span=link_to "Trips", trips_path
 

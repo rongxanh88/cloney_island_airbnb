@@ -1,0 +1,15 @@
+.experiences
+  - if current_user.experiences
+    %h3 Current Experience Listings
+    - current_user.experiences.each do |e|
+      %ul.item
+        .list-card-details
+          %span.price.badge
+            $#{e.price}
+          %h4.name
+            = link_to "#{e.title}", experience_path(e)
+          %span.room
+            =e.duration
+        %span.edit
+          %p
+            = link_to "Edit Listing", edit_experience_path(e)

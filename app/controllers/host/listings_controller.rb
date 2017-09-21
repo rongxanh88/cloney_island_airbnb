@@ -13,13 +13,14 @@ class Host::ListingsController < ApplicationController
 
   def create
     listing = current_user.listings.new(listing_params)
+    listing.airbnb_id = 1
     amenities = Amenity.list_amenities(amenities_params)
     if listing.save
       listing.amenities << amenities
       redirect_to listing_path(listing)
     else
       flash[:message] = "Unable to create new listing"
-      redirect_to new_user_hosts_listing_path(current_user)
+      redirect_to new_user_host_listing_path(current_user)
     end
   end
 

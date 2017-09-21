@@ -29,12 +29,11 @@ class ExperiencesController < ApplicationController
       flash[:validation] = "Experience didn't validate. Try again."
       redirect_to new_experience_path
     end
-
   end
 
-  # def edit
-  #   @experience
-  # end
+  def edit
+    @experience = Experience.find(params[:id])
+  end
 
   def update
     @experience.update(experience_params)

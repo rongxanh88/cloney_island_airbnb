@@ -1,22 +1,28 @@
 class ListingsController < ApplicationController
   def index
-    if params[:search_address] != "" && params[:search_num_guests] != "" && (params['search_start_date'] != "" && params[:search_end_date] != "" && params[:search_num_guests] != "")
-      preliminary_listings = Listing.search_address_and_num_guests(params)
-      @listings = Search.listings_available(preliminary_listings, params)
-    elsif params[:search_address] != "" && params[:search_num_guests] != ""
-      @listings = Listing.search_address_and_num_guests(params)
-    elsif
-      @listings = Listing.search_address(params[:search_address])
-    else
-      flash[:message] = "Unable to find listings related to your search."
-      @listings = []
-    end
-    if @listings.empty?
-      @listings = Listing.all
+    location = params['search_address']
+    @results = Airbnb.find_properties(location)
+    @geojson = Array.new
+    build_geojson(@results, @geojson)
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @geojson}
     end
   end
 
   def show
-    @listing = Listing.find(params[:id])
+    if Listing.exists?(params[:id])
+      @listing = Listing.find(params[:id])
+    else
+      @listing = Airbnb.find(params[:id])
+    end
+  end
+
+
+  def build_geojson(results, geojson)
+    results.each do |result|
+      geojson << GeojsonBuilder.build_listing(result)
+    end
   end
 end

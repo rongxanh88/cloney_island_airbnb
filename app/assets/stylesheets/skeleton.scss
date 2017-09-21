@@ -55,10 +55,13 @@ input {
 
 thead tr {
   background: #edefed;
+  border-top: 1px solid rgb(255,107,111);
+  border-bottom-style: solid double;
 }
 
 table {
   border-collapse: collapse;
+  margin-left: 50px;
 }
 
 .reservation-history {
@@ -83,10 +86,10 @@ tr.trip.td {
 
 .trips h4 {
   text-align: left;
-  
+
 }
 
-.trips 
+.trips
 
 .trip-guest {
   display: block;
@@ -228,7 +231,7 @@ input.cancel-trip-btn {
   border: 1px solid #c4c4c4;
 }
 
-.reservation-history h4 { 
+.reservation-history h4 {
   text-align: left;
 }
 
@@ -244,4 +247,17 @@ input.cancel-trip-btn {
 
 .container.listing-cards.host-listings {
   margin-left: 3.25%;
+}
+
+.user_forms {
+  display: block;
+  width: 40%;
+  align-content: center;
+  text-align: center;
+  form.form-horizontal{
+    width: 150px;
+    display: block;
+    padding-left: 200px;
+    text-align: justify;
+  }
 }

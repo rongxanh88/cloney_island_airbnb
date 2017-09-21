@@ -1,17 +1,37 @@
+
 - if @listings
   - @listings.each do |listing|
     .item
       .card-image
         - if listing.listing_images.first
           = link_to image_tag(listing.listing_images.first.property_image), listing_path(listing)
+        - elsif listing.listing_images.first.nil?
+          %h1.spacer-tile
       .card-details
         %span.price.badge
           $#{listing.price}
-        %span.name
-          = listing.name
+        =link_to listing.name, listing_path(listing), :class => "name"
+        %br
         %span.room
           = "#{listing.room_type} | #{listing.beds} beds"
       .card-details
         - if current_user && current_user.roles.exists?(name: "host") && listing.user_id == current_user.id
           %p
             = link_to "Edit Listing", edit_user_host_listing_path(current_user, listing)
+-if @results
+  - @results.each do |result|
+    .item
+      .card-image
+        - if result.listing_image
+          = link_to image_tag(result.listing_image), listing_path(result.id, airbnb: 'yes')
+      .card-details
+        %span.price.badge
+          $#{result.price}
+        %span.name
+          = result.name
+        %span.room
+          = "#{result.room_type} | #{result.beds} beds"
+      .card-details
+        - if current_user && current_user.roles.exists?(name: "host") && result.user_id == current_user.id
+          %p
+            = link_to "Edit Listing", edit_user_host_listing_path(current_user, result)

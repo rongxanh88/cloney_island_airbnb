@@ -1,0 +1,66 @@
+%h1 Edit Your Experience
+
+.container
+  %h1 Edit Profile
+
+  .form
+    =form_for @experience do |f|
+      .field.form-group
+      = f.label :title, "Title"
+      = f.text_field :title
+      .field.form-group
+      = f.label :duration, "Duration"
+      = f.text_field :duration
+      .field.form-group
+      = f.label :tagline, "Tagline"
+      = f.text_field :tagline
+      .field.form-group
+      = f.label :what, "What We'll Do"
+      = f.text_field :what
+      .field.form-group
+      = f.label :where, "Where We'll Be"
+      = f.text_field :where
+      .field.form-group.date-select
+      = f.label :provisions, "Provisions"
+      = f.text_field :provisions
+      .field.form-group
+      = f.label :notes, "Notes"
+      = f.text_field :notes
+      .field.form-group
+      = f.label :group_size, "Group Size"
+      = f.text_field :group_size
+      .field.form-group
+      = f.label :guest_requirements, "Guest Requirements"
+      = f.text_field :guest_requirements
+      .field.form-group
+      = f.label :cancellation_policy_type, "Cancellation Policy"
+      = f.text_field :cancellation_policy_type
+      .field.form-group
+      = f.label :price, "Price"
+      = f.text_field :price
+      .field.form-group
+      = f.label :host_description, "Host Description"
+      = f.text_field :host_description
+      .field.form-group
+      = f.label :street_address, "Street Address"
+      = f.text_field :street_address
+      .field.form-group
+      = f.label :city, "City"
+      = f.text_field :city
+      .field.form-group
+      = f.label :state, "State"
+      = f.text_field :state
+      .field.form-group
+      = f.label :zipcode, "Zipcode"
+      = f.text_field :zipcode
+      .actions.form-group
+        .button.confirm_booking_button
+          = f.submit "Update Your Experience"
+      .actions.form-group
+        .button
+          =button_to "Erase Experience", experience_path(@experience), method: :delete
+
+  .flash
+    - if flash[:error]
+      %p
+        = flash[:error]

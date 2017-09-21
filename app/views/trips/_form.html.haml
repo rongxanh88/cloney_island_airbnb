@@ -1,11 +1,13 @@
+%br
+%br
 %section{class: 'form add-trip'}
   = form_for [@listing, @trip], :url => {:controller => 'trips', :action => "create"} do |f|
     .form-group
       = f.label :start_date, 'Start Date'
-      = f.text_field :start_date, placeholder: 'YYYY/MM/DD'
+      = f.text_field :start_date, placeholder: 'YYYY/MM/DD', class: 'datepicker'
     .form-group
       = f.label :end_date, 'End Date'
-      = f.text_field :end_date, placeholder: 'YYYY/MM/DD'
+      = f.text_field :end_date, placeholder: 'YYYY/MM/DD', class: 'datepicker'
     .form-group
       = f.label :num_guests, 'Guests'
       = f.text_field :num_guests

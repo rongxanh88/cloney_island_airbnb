@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:d8e7b874da39846e7be1b1fd57d0f544@tarpon.redistogo.com:9581/
   channel_prefix: cloney_island_airbnb_production

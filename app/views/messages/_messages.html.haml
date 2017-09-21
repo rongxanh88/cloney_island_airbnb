@@ -1,0 +1,4 @@
+#messages.messages
+  #messages-table.messages-table
+    - if @conversation.messages.any?
+      = render @conversation.messages

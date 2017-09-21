@@ -66,9 +66,19 @@
           background-color: #fff;
         }
 
-        .host-dropdown-content, .signin-dropdown-content {
+        .host-dropdown-content {
           display: none;
           position: absolute;
+          right: 70px;
+          background-color: #fff;
+          z-index: 1;
+          line-height: 200%;
+        }
+
+        .signin-dropdown-content {
+          display: none;
+          position: absolute;
+          right: 10px;
           background-color: #fff;
           z-index: 1;
           line-height: 200%;

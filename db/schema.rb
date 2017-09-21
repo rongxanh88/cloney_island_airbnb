@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719055134) do
+ActiveRecord::Schema.define(version: 20170920195523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,26 +92,25 @@ ActiveRecord::Schema.define(version: 20170719055134) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.text "name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "airbnb_id"
+    t.string "name"
     t.text "description"
     t.integer "accomodates"
     t.integer "bathrooms"
     t.integer "bedrooms"
     t.integer "beds"
-    t.integer "price"
+    t.float "price"
     t.text "house_rules"
     t.integer "property_type"
     t.integer "bed_type"
     t.integer "pet_type"
     t.integer "room_type"
-    t.bigint "user_id"
-    t.integer "status", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "status"
+    t.text "address"
     t.integer "cancellation_policy", default: 0
-    t.string "address"
-    t.float "latitude"
-    t.float "longitude"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 

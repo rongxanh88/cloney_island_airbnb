@@ -1,21 +1,24 @@
 %section.trips
-  - if @trips.nil? == false
-    - @trips.each do |trip|
+  - if @index.nil? == false
+    - @index.each do |trip, listing|
       .booked-trips
         .trip-details
-          %h3= link_to trip.listing.name, trip_path(trip)
-          %h4= trip.listing.address
+          %h3= link_to listing.name, trip_path(trip)
+          %h4= listing.address
           %h4= "Arrival: #{trip.start_date}"
           %h4= "Departure: #{trip.end_date}"
-          = image_tag trip.listing.user.profile_picture, :class => "profile-pic trips-host-profile-pic"
-          %h4= trip.listing.user.first_name
-          %h4= trip.listing.user.phone_number
-          %h4= trip.listing.user.email
-          = button_to 'Message Host', conversation_path(trip.conversation), :method => :get, :class => 'message-host-btn'
+          - if listing.class == Listing
+            = image_tag listing.user.profile_picture, :class => "profile-pic trips-host-profile-pic"
+            %h4= listing.user.first_name
+          - elsif listing.class == Airbnb
+            = image_tag listing.user_profile_picture, :class => "profile-pic trips-host-profile-pic"
+            %h4= listing.user_first_name
+
+          = button_to 'Message Host', conversation_path(trip.conversation.id, listing.id), :method => :get, :class => 'message-host-btn'
           - if trip.trip_status == 'cancelled'
             %h4 Trip has been cancelled
           - else
             = button_to 'Cancel Trip', trip_path(trip, :trip_status => 'cancelled'), method: :put, :class => 'cancel-trip-btn'
         .trip-image
-          - if trip.listing.listing_images
-            = image_tag trip.listing.listing_images.first.property_image, :class => "property-image trips-property_image"
+          - unless listing.listing_images.count == 0
+            = image_tag listing.listing_images.first, :class => "property-image trips-property_image"
